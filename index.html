@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<title>Year of Calisthenics — Beginner to Advanced</title>
+<style>
+:root{--bg:#0f1115;--card:#181b22;--card2:#20242d;--line:#2a2f3a;--tx:#e9ecf1;--mut:#9aa3b2;--acc:#ffb020;--ok:#3ddc84;--bad:#ff5c5c;--p1:#4cc9f0;--p2:#7bd88f;--p3:#ffb020;--p4:#ff6b9d;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--tx);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;-webkit-tap-highlight-color:transparent}
+body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+main{max-width:760px;margin:0 auto;padding:16px}
+header{position:sticky;top:0;z-index:5;background:rgba(15,17,21,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .in{max-width:760px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
+header h1{font-size:18px;letter-spacing:.2px}
+header .sub{font-size:13px;color:var(--mut)}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--acc),#ff6b3d);display:grid;place-items:center;font-size:20px;flex:none}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:6;background:#12151b;border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
+nav .in{display:flex;max-width:760px;width:100%}
+nav button{flex:1;background:none;border:0;color:var(--mut);padding:10px 4px 12px;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
+nav button span{font-size:20px}
+nav button.on{color:var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.card h2{font-size:18px;margin-bottom:6px}
+.card h3{font-size:15px;margin-bottom:6px}
+.mut{color:var(--mut)}
+.small{font-size:13px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:10px;padding:11px 16px;font-weight:600;font-size:15px;cursor:pointer;background:var(--acc);color:#1a1200;text-decoration:none}
+.btn.sec{background:var(--card2);color:var(--tx);border:1px solid var(--line)}
+.btn.ok{background:var(--ok);color:#002210}
+.btn.bad{background:transparent;color:var(--bad);border:1px solid var(--bad)}
+.btn.full{width:100%}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sp{flex:1}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--card2);color:var(--mut);border:1px solid var(--line)}
+.tag.deload{color:var(--p1);border-color:var(--p1)}
+.tag.test{color:var(--acc);border-color:var(--acc)}
+.tag.done{color:var(--ok);border-color:var(--ok)}
+.hero{border-left:4px solid var(--acc)}
+.hero .big{font-size:24px;font-weight:800;line-height:1.2;margin:4px 0}
+.datenav{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.datenav button{background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:10px;width:40px;height:40px;font-size:18px;cursor:pointer}
+.datenav .d{flex:1;text-align:center;font-weight:600}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+.ex.alldone{border-color:rgba(61,220,132,.5)}
+.ex .top{padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.ex .num{width:28px;height:28px;border-radius:8px;background:var(--card2);display:grid;place-items:center;font-weight:700;font-size:13px;flex:none;color:var(--mut)}
+.ex.alldone .num{background:var(--ok);color:#002210}
+.ex .nm{font-weight:700;font-size:16px}
+.ex .rx{color:var(--acc);font-weight:700;font-size:15px;margin-top:2px}
+.ex .rest{font-size:13px;color:var(--mut)}
+.sets{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 14px 56px}
+.set{min-width:44px;height:44px;border-radius:12px;border:2px solid var(--line);background:var(--card2);color:var(--tx);font-weight:700;cursor:pointer;font-size:14px;padding:0 8px}
+.set.on{background:var(--ok);border-color:var(--ok);color:#002210}
+.more{border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;color:var(--mut);padding:10px 16px;text-align:left;font-size:13px;cursor:pointer}
+.det{padding:4px 16px 16px;font-size:14px}
+.det ol{padding-left:20px;margin:6px 0 10px}
+.det li{margin-bottom:5px}
+.det p{margin:6px 0}
+.tip{background:rgba(255,176,32,.08);border:1px solid rgba(255,176,32,.25);border-radius:10px;padding:8px 10px}
+.vid{display:inline-flex;align-items:center;gap:6px;margin-top:8px;background:#c4302b;color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:9px 14px;border-radius:10px}
+.list{list-style:none}
+.list li{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);align-items:center}
+.list li:last-child{border-bottom:0}
+.chk{width:22px;height:22px;border-radius:6px;border:2px solid var(--line);flex:none;display:grid;place-items:center;cursor:pointer;background:var(--card2);font-size:13px}
+.chk.on{background:var(--ok);border-color:var(--ok);color:#002210}
+details summary{cursor:pointer;font-weight:700;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"▾";float:right;color:var(--mut)}
+details[open] summary::after{content:"▴"}
+.phase{border-left:4px solid var(--pc)}
+.wk{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.wk:last-child{border-bottom:0}
+.wk.cur{background:rgba(255,176,32,.06);margin:0 -16px;padding:8px 16px}
+.wk .wl{width:74px;flex:none;font-size:13px}
+.wk .wl b{display:block;font-size:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.chip{border:1.5px solid var(--line);background:var(--card2);color:var(--tx);border-radius:9px;padding:5px 8px;font-size:12px;cursor:pointer;font-weight:600;line-height:1.1;text-align:center;min-width:44px}
+.chip small{display:block;font-weight:400;color:var(--mut);font-size:10px}
+.chip.done{background:var(--ok);border-color:var(--ok);color:#002210}
+.chip.done small{color:#0a4a26}
+.chip.miss{border-color:var(--bad)}
+.chip.today{outline:2px solid var(--acc);outline-offset:1px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+@media(min-width:560px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.stat b{display:block;font-size:24px}
+.stat span{font-size:12px;color:var(--mut)}
+.bar{height:10px;background:var(--card2);border-radius:99px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p1),var(--p2),var(--p3),var(--p4))}
+label.f{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,textarea,select{width:100%;background:var(--card2);color:var(--tx);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:16px;font-family:inherit}
+textarea{min-height:70px;resize:vertical}
+.days{display:flex;gap:6px;flex-wrap:wrap}
+.day{flex:1;min-width:40px;padding:10px 0;border-radius:10px;border:1.5px solid var(--line);background:var(--card2);color:var(--tx);font-weight:700;cursor:pointer}
+.day.on{background:var(--acc);border-color:var(--acc);color:#1a1200}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 4px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--mut);font-weight:600}
+#timer{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:7;max-width:736px;margin:0 auto;background:#1d2230;border:1px solid var(--acc);border-radius:16px;padding:12px 14px;display:none;align-items:center;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+#timer.show{display:flex}
+#timer .t{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;min-width:84px}
+#timer .l{flex:1;font-size:13px;color:var(--mut)}
+#timer .l b{display:block;color:var(--tx);font-size:14px}
+#timer button{background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:9px;padding:8px 10px;font-weight:700;cursor:pointer}
+#timer.go{border-color:var(--ok);background:#14301f}
+#toast{position:fixed;top:70px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--ok);color:#002210;padding:10px 18px;border-radius:99px;font-weight:700;opacity:0;transition:.3s;z-index:9;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.search{margin-bottom:12px}
+.libgrp{margin:18px 0 8px;font-size:13px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut);font-weight:700}
+.ms{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.ms:last-child{border-bottom:0}
+.ms .n{flex:1}
+.ms .w{font-size:12px;color:var(--mut)}
+.foot{font-size:12px;color:var(--mut);text-align:center;margin:20px 0}
+</style>
+</head>
+<body>
+<header><div class="in"><div class="logo">🤸</div><div><h1>Year of Calisthenics</h1><div class="sub" id="hsub"></div></div></div></header>
+<main id="app"></main>
+<div id="timer"><div class="t" id="tt">0:00</div><div class="l" id="tl"></div><button data-act="tadd" data-v="-15">−15</button><button data-act="tadd" data-v="15">+15</button><button data-act="tskip">✕</button></div>
+<div id="toast"></div>
+<nav><div class="in">
+<button data-act="tab" data-v="today"><span>🏋️</span>Workout</button>
+<button data-act="tab" data-v="plan"><span>📅</span>Plan</button>
+<button data-act="tab" data-v="lib"><span>📖</span>Exercises</button>
+<button data-act="tab" data-v="prog"><span>📈</span>Progress</button>
+<button data-act="tab" data-v="set"><span>⚙️</span>Settings</button>
+</div></nav>
+
+<script>
+/* ===================== EXERCISE LIBRARY ===================== */
+const EX={
+wristprep:{n:"Wrist Prep",c:"Mobility",how:["Kneel on all fours. Rock forward and back over your hands with fingers pointing forward, then sideways, then backward (about 10 rocks each).","Palm lifts: keep fingertips on the floor and lift your palms 10 times.","Finish with gentle wrist circles both directions."],tip:"Never skip this before handstand or planche work. Your wrists carry your whole body.",q:"wrist warm up for handstands"},
+pushup:{n:"Push-Up",c:"Push",how:["Hands slightly wider than shoulders, body in a straight line from head to heels.","Lower until your chest is about a fist from the floor, elbows ~45° from your body.","Press back up, locking out and pushing the floor away at the top."],tip:"Squeeze glutes and abs so your hips don't sag.",easy:"Incline push-ups (hands on a bench or counter) or knee push-ups.",hard:"Diamond or decline push-ups.",q:"proper push up form tutorial"},
+pike_pushup:{n:"Pike Push-Up",c:"Push",how:["Start in a downward-dog shape: hips high, hands shoulder-width, legs as straight as you can.","Bend your elbows and lower the top of your head toward a spot in front of your hands (head and hands form a triangle).","Press back up to straight arms."],tip:"Your first step toward handstand push-ups. Keep your hips high over your shoulders.",easy:"Reduce the range, or bend your knees.",hard:"Elevate your feet on a box.",q:"pike push up tutorial"},
+elev_pike_pushup:{n:"Elevated Pike Push-Up",c:"Push",how:["Feet on a chair or bench (about knee height). Walk your hands in until your hips are nearly over your shoulders.","Lower your head toward the floor in front of your hands.","Press up to lockout."],tip:"Higher feet means more bodyweight and a harder rep.",easy:"Floor pike push-ups.",hard:"Box pike push-ups with hips stacked.",q:"elevated pike push up tutorial"},
+box_pike_pushup:{n:"Box Pike Push-Up (Hips Stacked)",c:"Push",how:["Knees or feet on a high box so your torso is vertical, hips stacked over shoulders.","Lower your head to the floor (or onto a yoga block or pillow) under control.","Press to lockout."],tip:"This is nearly the full handstand push-up pattern, without the balance demand.",easy:"Elevated pike push-ups.",hard:"Wall handstand push-up negatives.",q:"box pike push up handstand push up progression"},
+wall_hspu:{n:"Wall Handstand Push-Up",c:"Push",how:["Kick up to a handstand with your back to the wall, hands about 15–30 cm from it.","Lower slowly until your head lightly touches a cushion. Keep your elbows from flaring wide.","Press back to straight arms."],tip:"Can't press up yet? Do slow 4–5 second negatives, then come down and kick up again.",easy:"Negatives only (lower for 5 s) or box pike push-ups.",hard:"Deficit HSPU (hands on parallettes or books).",q:"wall handstand push up progression tutorial"},
+plank:{n:"Plank",c:"Core",how:["Forearms on the floor under your shoulders, body straight.","Squeeze your glutes, brace your abs and tuck your pelvis slightly.","Breathe steadily and hold."],tip:"Quality over time. Stop when your hips sag.",easy:"Plank on your knees.",hard:"Long-lever plank (elbows further forward).",q:"plank proper form"},
+side_plank:{n:"Side Plank",c:"Core",how:["Lie on your side, elbow under your shoulder, feet stacked.","Lift your hips so your body forms a straight line.","Hold, then switch sides."],easy:"Bottom knee down.",hard:"Lift your top leg.",q:"side plank form"},
+hollow:{n:"Hollow Body Hold",c:"Core",how:["Lie on your back and press your lower back into the floor.","Lift your shoulders and legs off the floor, arms reaching overhead.","Hold a 'banana' shape with your lower back glued down."],tip:"This is THE handstand body shape. Master it.",easy:"Bend your knees and keep your arms by your sides.",hard:"Hollow rocks.",q:"hollow body hold tutorial"},
+arch:{n:"Arch Hold (Superman)",c:"Core",how:["Lie face down, arms overhead.","Lift your arms, chest and legs off the floor, squeezing your glutes and upper back.","Hold with your neck neutral."],easy:"Lift arms only, then legs only.",hard:"Arch rocks.",q:"arch body hold calisthenics"},
+aus_row:{n:"Australian Row (Inverted Row)",c:"Pull",how:["Lie under a sturdy bar, rings or table edge at waist height and grab it shoulder-width.","Keep your body straight with heels on the floor.","Pull your chest to the bar, squeezing your shoulder blades, then lower with control."],tip:"Walk your feet forward to make it easier, back to make it harder.",easy:"Bend your knees or raise the bar.",hard:"Feet-elevated rows.",q:"australian row inverted row tutorial"},
+scap_pull:{n:"Scapular Pull-Up",c:"Pull",how:["Hang from a bar with straight arms.","Without bending your elbows, pull your shoulder blades down and back so your body rises a few cm.","Slowly relax back to a hang."],tip:"Teaches you to start every pull-up from the shoulders.",q:"scapular pull ups tutorial"},
+dead_hang:{n:"Dead Hang",c:"Pull",how:["Grab a bar shoulder-width, overhand.","Hang with straight arms, shoulders slightly engaged (not shrugged into your ears).","Hold and breathe."],tip:"Builds grip and shoulder health.",easy:"Keep your toes lightly on a box.",hard:"One-arm assisted hangs.",q:"dead hang form"},
+neg_pullup:{n:"Negative Pull-Up",c:"Pull",how:["Use a box or chair to get your chin above the bar.","Lower yourself as slowly as possible (aim for 3–5 s) to a full hang.","Step back up and repeat."],tip:"The fastest way to your first pull-up.",easy:"Shorter lowering time.",hard:"Slower lowering (8–10 s).",q:"negative pull ups first pull up"},
+pullup:{n:"Pull-Up",c:"Pull",how:["Overhand grip slightly wider than shoulders, starting from a full dead hang.","Pull your shoulder blades down, then pull your chin over the bar with your chest toward it.","Lower to a full hang with control."],tip:"No kipping. If you miss reps, finish the set with negatives.",easy:"Band-assisted pull-ups or negatives.",hard:"Explosive or archer pull-ups.",q:"perfect pull up form tutorial"},
+chinup:{n:"Chin-Up",c:"Pull",how:["Underhand grip, shoulder-width.","Pull until your chin passes the bar.","Lower fully."],easy:"Negatives.",hard:"Slow tempo or weighted.",q:"chin up form tutorial"},
+explosive_pullup:{n:"Explosive Pull-Up",c:"Pull",how:["From a dead hang, pull as hard and fast as you can.","Aim to bring your chest or sternum to the bar.","Lower under control, reset, repeat."],tip:"This is the power you need for a muscle-up.",easy:"Regular pull-ups with a fast pull.",hard:"Chest-to-bar with a hand release.",q:"explosive pull ups for muscle up"},
+archer_pullup:{n:"Archer Pull-Up",c:"Pull",how:["Wide grip. Pull toward one hand while the other arm straightens out to the side.","Lower, then alternate sides."],tip:"A step toward the one-arm pull-up.",easy:"Typewriter pull-ups, or uneven grip (one hand on a towel).",hard:"Assisted one-arm pull-ups.",q:"archer pull up tutorial"},
+lsit_pullup:{n:"L-Sit Pull-Up",c:"Pull",how:["Hang and raise straight legs to 90° (an L shape).","Do pull-ups while holding the L."],easy:"Tucked-knee pull-ups.",q:"l sit pull up tutorial"},
+muscleup:{n:"Bar Muscle-Up",c:"Pull",how:["Start with a small hollow-to-arch swing.","Pull explosively toward your hips (not your chin), leaning your chest over the bar.","Turn your wrists over the bar and press to a straight-arm support.","Lower with control."],tip:"Not there yet? Each set = 3 slow negatives from the top + 3 explosive pull-ups.",easy:"Muscle-up negatives or jumping muscle-ups from a box.",hard:"Strict muscle-ups with no swing.",q:"bar muscle up tutorial beginner"},
+squat:{n:"Bodyweight Squat",c:"Legs",how:["Feet shoulder-width, toes slightly out.","Sit your hips back and down until your thighs are at least parallel, chest up.","Drive through your whole foot to stand."],easy:"Squat to a chair.",hard:"Jump squats or pause squats.",q:"bodyweight squat proper form"},
+lunge:{n:"Reverse Lunge",c:"Legs",how:["Step one foot back and lower your back knee toward the floor.","Keep your front shin near vertical.","Push through your front heel to return. Alternate legs."],easy:"Hold onto a wall.",hard:"Bulgarian split squats.",q:"reverse lunge form"},
+step_up:{n:"Step-Up",c:"Legs",how:["Place one foot on a sturdy bench or stair.","Drive through that foot to stand tall on the box.","Lower slowly. Do all reps on one side, then switch."],q:"step up exercise form"},
+bulgarian:{n:"Bulgarian Split Squat",c:"Legs",how:["Rear foot on a bench behind you, front foot about 60 cm forward.","Lower straight down until your back knee nearly touches the floor.","Drive up through your front foot."],easy:"Reverse lunges.",hard:"3 s lowering, or hold a loaded backpack.",q:"bulgarian split squat form"},
+pistol_box:{n:"Box Pistol Squat",c:"Legs",how:["Stand on one leg in front of a box or chair, other leg straight out in front.","Sit back slowly onto the box with control.","Stand back up on one leg without rocking."],tip:"Lower the box over time until you reach the floor.",easy:"Higher box, or hold a doorframe.",hard:"Lower box, or no box.",q:"pistol squat progression box"},
+pistol:{n:"Pistol Squat",c:"Legs",how:["Stand on one leg, other leg straight out in front.","Squat all the way down with arms forward for balance.","Stand up without the free foot touching the floor."],easy:"Box pistols, or hold a doorframe.",hard:"Slow tempo, or hold a weight.",q:"pistol squat tutorial"},
+glute_bridge:{n:"Glute Bridge",c:"Legs",how:["Lie on your back, knees bent, feet flat.","Drive your hips up by squeezing your glutes until you're straight from knees to shoulders.","Pause 1 s, lower."],hard:"Single-leg glute bridge.",q:"glute bridge form"},
+sl_glute_bridge:{n:"Single-Leg Glute Bridge",c:"Legs",how:["Same as a glute bridge, but with one leg extended in the air.","Keep your hips level as you lift."],easy:"Two-leg bridge.",q:"single leg glute bridge"},
+jump_squat:{n:"Jump Squat",c:"Legs",how:["Squat to parallel.","Explode up into a jump.","Land softly and flow into the next rep."],easy:"Fast regular squats.",q:"jump squat form"},
+nordic_neg:{n:"Nordic Curl Negative",c:"Legs",how:["Kneel with your ankles anchored (under a couch or held by a partner).","Keep your hips straight and lower your body forward as slowly as possible.","Catch yourself with your hands and push back up."],tip:"Bulletproofs your hamstrings.",easy:"Shorter range.",q:"nordic curl beginner progression"},
+calf_raise:{n:"Calf Raise",c:"Legs",how:["Stand on a step edge with your heels hanging off.","Rise high onto your toes, pause, then lower below the step."],hard:"Single-leg.",q:"calf raise on step"},
+bench_dip:{n:"Bench Dip",c:"Push",how:["Hands on a bench behind you, fingers forward, legs out in front.","Bend your elbows to about 90°, keeping shoulders down away from your ears.","Press back up."],easy:"Bend your knees.",hard:"Feet elevated, then parallel bar dips.",q:"bench dip proper form"},
+dip:{n:"Parallel Bar Dip",c:"Push",how:["Support yourself on parallel bars (or two sturdy chairs / a counter corner) with straight arms.","Lean slightly forward and lower until your shoulders are just below your elbows.","Press back to lockout."],easy:"Bench dips, or negatives (jump to the top, lower slowly).",hard:"Weighted dips or straight bar dips.",q:"parallel bar dips tutorial beginner"},
+diamond:{n:"Diamond Push-Up",c:"Push",how:["Hands together under your chest, thumbs and index fingers forming a diamond.","Lower your chest to your hands, elbows close to your body.","Press up."],easy:"Close-grip knee push-ups.",q:"diamond push up form"},
+archer_pushup:{n:"Archer Push-Up",c:"Push",how:["Very wide hand position.","Lower toward one hand while the other arm straightens.","Press back up and alternate sides."],tip:"Builds toward the one-arm push-up.",easy:"Hands elevated on a bench.",q:"archer push up tutorial"},
+pp_pushup:{n:"Pseudo Planche Push-Up",c:"Push",how:["Push-up position with hands turned out or back, placed by your waist.","Lean your shoulders forward past your hands.","Do push-ups while keeping that forward lean."],tip:"Builds the straight-arm strength you need for the planche.",easy:"Less lean, or on knees.",q:"pseudo planche push up tutorial"},
+oap_neg:{n:"One-Arm Push-Up Negative",c:"Push",how:["Feet wide, one hand under your chest, other hand behind your back.","Lower as slowly as possible (3–5 s).","Use both hands to push back up."],easy:"Incline one-arm push-ups (hand on a bench).",hard:"Full one-arm push-ups.",q:"one arm push up progression"},
+wall_plank:{n:"Wall Walk-Up Hold",c:"Handstand",how:["Start in a push-up position with your feet against a wall.","Walk your feet up the wall and your hands toward it until you're in a pike or steeper.","Hold with straight arms, pushing your shoulders toward your ears. Walk down carefully."],tip:"Your first handstand step. Start at a 45° pike and get closer to the wall each week.",easy:"Pike hold with feet on a chair.",hard:"Chest-to-wall handstand.",q:"wall walk handstand beginner"},
+wall_hs:{n:"Chest-to-Wall Handstand",c:"Handstand",how:["Walk up the wall until your chest faces it and your hands are 10–20 cm away.","Straight body: arms locked, shoulders pushed up to ears, ribs tucked, glutes and legs squeezed, toes pointed.","Hold, then walk down or cartwheel out."],tip:"Aim for a straight line, not a banana back. This builds the strength and shape for freestanding.",easy:"Wall walk-up hold at a lower angle.",hard:"Only toes touching, or lift one foot off.",q:"chest to wall handstand tutorial"},
+kickup:{n:"Handstand Kick-Up Practice",c:"Handstand",how:["Facing a wall (or open space with a soft landing), lunge forward and place your hands shoulder-width.","Kick one leg up with the other following, aiming to stack hips over shoulders.","Lightly touch the wall (or try to balance), then come down. Each attempt is one rep."],tip:"Learn to bail first: turn one hand and cartwheel out sideways. Practice on grass or a mat.",q:"how to kick up to handstand and bail"},
+wall_taps:{n:"Wall Handstand Shoulder Taps",c:"Handstand",how:["Get into a chest-to-wall handstand.","Shift your weight to one hand and lift the other to tap your shoulder.","Alternate sides and count total taps."],tip:"Teaches weight shifting for balance and handstand walking.",easy:"Just lift your fingers off the floor.",q:"wall handstand shoulder taps"},
+free_hs:{n:"Freestanding Handstand Practice",c:"Handstand",how:["Kick up away from the wall with control (minimal momentum).","Balance with your fingers: press your fingertips when falling toward your back, push with the heel of your palm when falling back toward your hands.","Each set is a short block of attempts. The target is your best hold. Bail with a cartwheel."],tip:"Short, fresh, frequent attempts beat long tired sessions. Film yourself to check your line.",easy:"Wall heel-pulls: start with heels on the wall and gently pull off to balance.",hard:"Handstand walking, shoulder taps, presses.",q:"freestanding handstand balance tutorial"},
+frog_stand:{n:"Frog Stand",c:"Handstand",how:["Squat down with hands shoulder-width on the floor.","Rest your knees on the backs of your upper arms (elbows bent).","Lean forward until your feet lift off, and balance."],tip:"Teaches you to balance on your hands using your fingers. Put a pillow in front of your face.",hard:"Crow pose.",q:"frog stand tutorial beginner"},
+crow:{n:"Crow Pose",c:"Handstand",how:["Like a frog stand, but with knees higher on your triceps and arms straighter.","Lean forward, lift both feet and look slightly ahead.","Hold and breathe."],easy:"Frog stand.",hard:"Crow to headstand, or straight-arm crow.",q:"crow pose tutorial"},
+tuck_lsit:{n:"Tuck L-Sit",c:"Core",how:["Hands on the floor, parallettes or two chairs beside your hips.","Push down, lock your arms, drop your shoulders and lift your butt and feet with knees tucked to chest.","Hold."],easy:"One foot down, or feet lightly touching.",hard:"One-leg L-sit, then full L-sit.",q:"tuck l sit tutorial"},
+lsit:{n:"L-Sit",c:"Core",how:["Support yourself on your hands or parallettes with arms locked.","Lift straight legs to horizontal and hold.","Push your shoulders down and point your toes."],easy:"Tuck L-sit, or extend one leg at a time.",hard:"V-sit progressions.",q:"l sit progression tutorial"},
+knee_raise:{n:"Hanging Knee Raise",c:"Core",how:["Hang from a bar with shoulders slightly engaged.","Raise your knees to your chest, curling your pelvis up.","Lower slowly without swinging."],easy:"Lying knee raises.",hard:"Hanging leg raises.",q:"hanging knee raise form"},
+leg_raise:{n:"Hanging Leg Raise",c:"Core",how:["Hang from a bar.","Raise straight legs to at least 90° (higher over time).","Lower under control."],easy:"Knee raises.",hard:"Toes-to-bar.",q:"hanging leg raise tutorial"},
+toes_to_bar:{n:"Toes-to-Bar",c:"Core",how:["Hang and engage your lats (push the bar toward your legs).","Lift straight legs until your toes touch the bar.","Lower slowly."],easy:"Hanging leg raises.",q:"strict toes to bar tutorial"},
+tuck_fl:{n:"Tuck Front Lever",c:"Pull",how:["Hang from a bar and pull your straight arms down toward your hips (lats).","Tuck your knees to your chest and lean back until your back is horizontal.","Hold with straight arms."],easy:"Tuck front lever raises, or band assistance.",hard:"Advanced tuck front lever.",q:"tuck front lever tutorial"},
+adv_tuck_fl:{n:"Advanced Tuck Front Lever",c:"Pull",how:["Same as the tuck front lever, but open your hips so thighs are at 90° to your torso and your back is flat.","Hold horizontal with straight arms."],easy:"Tuck front lever.",hard:"One-leg front lever.",q:"advanced tuck front lever"},
+planche_lean:{n:"Planche Lean",c:"Push",how:["Push-up position, hands turned slightly out.","Lock your arms and round your upper back (protract).","Lean your shoulders forward past your hands and hold."],tip:"Lean only as far as you can keep your arms perfectly straight.",hard:"Tuck planche.",q:"planche lean tutorial"},
+tuck_planche:{n:"Tuck Planche",c:"Push",how:["Hands on the floor or parallettes, arms locked, upper back rounded.","Lean forward and lift your feet with knees tucked so only your hands touch the floor.","Hold with hips at shoulder height."],tip:"Very demanding on wrists and elbows. Stop at any joint pain.",easy:"Planche lean, or straight-arm frog stand.",q:"tuck planche tutorial beginner"},
+pike_compress:{n:"Pike Compression Lifts",c:"Mobility",how:["Sit with legs straight and together, hands on the floor beside your knees.","Lean forward slightly and lift both heels off the floor using your hip flexors.","Lower and repeat."],tip:"Builds the compression for L-sits and press handstands.",q:"pike compression lifts"},
+pike_stretch:{n:"Pike Stretch",c:"Mobility",how:["Sit with legs straight and together.","Hinge at the hips with a flat back, reaching toward your toes.","Relax deeper on each exhale."],q:"pike stretch flexibility"},
+shoulder_stretch:{n:"Shoulder Flexion Stretch",c:"Mobility",how:["Kneel facing a bench or couch, elbows on it, hands together.","Sink your chest toward the floor so your arms go overhead.","Hold and breathe."],tip:"Open shoulders = straight handstand line.",q:"shoulder flexion stretch for handstand"},
+burpee:{n:"Burpee",c:"Conditioning",how:["From standing, squat and place your hands down.","Jump your feet back to a plank (add a push-up if you like).","Jump your feet in and jump up with arms overhead."],easy:"Step back instead of jumping.",q:"burpee proper form"}
+};
+
+/* ===================== PROGRAM ===================== */
+const X=(e,s,lo,hi,rest,u='r',side=0)=>({e,s,lo,hi,rest,u,side});
+const PH=[
+{n:"Foundation",s:1,e:12,col:"var(--p1)",goal:"Build joint strength and perfect form, learn the hollow body shape, and get comfortable upside down.",days:{
+A:{t:"Push & Legs",ex:[X('pushup',3,6,15,90),X('pike_pushup',3,4,10,90),X('squat',3,12,25,60),X('wall_plank',3,15,40,90,'s'),X('plank',3,20,60,60,'s')]},
+B:{t:"Pull & Core",ex:[X('scap_pull',2,8,12,60),X('aus_row',3,6,15,90),X('neg_pullup',3,3,6,120),X('dead_hang',3,15,45,90,'s'),X('glute_bridge',3,12,20,60),X('hollow',3,15,40,60,'s')]},
+C:{t:"Full Body & Balance",ex:[X('frog_stand',3,10,30,60,'s'),X('pushup',3,6,15,90),X('lunge',3,6,12,60,'r',1),X('bench_dip',3,6,15,90),X('aus_row',3,6,15,90),X('arch',3,15,30,60,'s')]},
+D:{t:"Handstand & Mobility",ex:[X('wall_plank',4,15,45,90,'s'),X('frog_stand',3,10,30,60,'s'),X('hollow',3,15,40,60,'s'),X('pike_compress',3,6,15,45),X('pike_stretch',2,30,60,20,'s'),X('shoulder_stretch',2,30,60,20,'s')]},
+E:{t:"Legs & Conditioning",ex:[X('squat',4,15,30,60),X('step_up',3,8,15,60,'r',1),X('glute_bridge',3,15,25,60),X('calf_raise',3,15,25,45),X('burpee',3,5,12,60),X('side_plank',2,15,40,45,'s',1)]}}},
+{n:"Build",s:13,e:24,col:"var(--p2)",goal:"First strict pull-ups and dips, 60 s wall handstands, kick-ups and crow pose.",days:{
+A:{t:"Push",ex:[X('elev_pike_pushup',4,5,12,120),X('dip',3,3,12,120),X('diamond',3,6,15,90),X('wall_hs',3,20,60,90,'s'),X('tuck_lsit',3,8,20,60,'s')]},
+B:{t:"Pull",ex:[X('pullup',4,2,8,150),X('chinup',3,2,8,120),X('aus_row',3,10,15,90),X('knee_raise',3,8,15,60),X('hollow',3,30,60,60,'s')]},
+C:{t:"Legs & Balance",ex:[X('kickup',5,3,6,60,'a'),X('crow',3,10,30,60,'s'),X('bulgarian',3,8,12,90,'r',1),X('sl_glute_bridge',3,8,15,60,'r',1),X('side_plank',3,20,45,45,'s',1)]},
+D:{t:"Handstand & Mobility",ex:[X('wall_hs',4,30,60,90,'s'),X('wall_taps',3,6,16,90,'t'),X('kickup',5,3,6,60,'a'),X('pike_compress',3,10,15,45),X('pike_stretch',2,45,60,20,'s'),X('shoulder_stretch',2,45,60,20,'s')]},
+E:{t:"Legs & Conditioning",ex:[X('jump_squat',4,8,15,75),X('bulgarian',3,8,12,90,'r',1),X('nordic_neg',3,3,6,120),X('calf_raise',3,20,30,45),X('burpee',3,8,15,60),X('arch',3,20,40,45,'s')]}}},
+{n:"Strength & Skills",s:25,e:38,col:"var(--p3)",goal:"Freestanding handstand attempts, tuck front lever, archer variations, L-sit and box pistols.",days:{
+A:{t:"Push & Handstand",ex:[X('free_hs',6,3,20,60,'s'),X('box_pike_pushup',4,4,10,150),X('archer_pushup',3,3,8,120,'r',1),X('pp_pushup',3,5,12,90),X('dip',3,10,15,120)]},
+B:{t:"Pull & Lever",ex:[X('explosive_pullup',4,3,6,150),X('pullup',4,6,12,150),X('tuck_fl',4,6,20,120,'s'),X('leg_raise',3,6,12,90),X('dead_hang',2,45,60,60,'s')]},
+C:{t:"Legs & Skills",ex:[X('free_hs',6,5,20,60,'s'),X('pistol_box',3,4,8,120,'r',1),X('lsit',4,5,15,90,'s'),X('crow',3,20,45,60,'s'),X('nordic_neg',3,4,8,120)]},
+D:{t:"Handstand & Planche",ex:[X('free_hs',8,5,25,60,'s'),X('wall_taps',3,10,20,90,'t'),X('planche_lean',4,10,25,90,'s'),X('pike_compress',3,12,20,45),X('shoulder_stretch',2,60,60,20,'s')]},
+E:{t:"Legs & Conditioning",ex:[X('jump_squat',4,10,15,75),X('pistol_box',3,5,8,90,'r',1),X('burpee',4,10,15,60),X('hollow',3,45,60,45,'s'),X('side_plank',2,30,60,45,'s',1)]}}},
+{n:"Advanced",s:39,e:52,col:"var(--p4)",goal:"Wall handstand push-ups, muscle-ups, full L-sit, tuck planche, pistols and solid freestanding handstands.",days:{
+A:{t:"Push & Handstand",ex:[X('free_hs',6,15,45,60,'s'),X('wall_hspu',5,2,8,180),X('oap_neg',3,2,5,120,'r',1),X('pp_pushup',3,8,15,90),X('dip',4,12,20,120)]},
+B:{t:"Pull & Muscle-Up",ex:[X('muscleup',5,1,5,180),X('archer_pullup',3,2,6,150,'r',1),X('adv_tuck_fl',4,6,15,120,'s'),X('lsit_pullup',3,4,8,120),X('toes_to_bar',3,5,12,90)]},
+C:{t:"Legs & Statics",ex:[X('free_hs',6,15,45,60,'s'),X('pistol',4,3,8,120,'r',1),X('tuck_planche',5,4,15,120,'s'),X('lsit',4,10,25,90,'s'),X('nordic_neg',3,5,8,120)]},
+D:{t:"Handstand Mastery",ex:[X('free_hs',8,20,60,60,'s'),X('wall_taps',3,16,24,90,'t'),X('tuck_planche',4,5,15,120,'s'),X('planche_lean',3,20,30,90,'s'),X('pike_compress',3,15,20,45),X('shoulder_stretch',2,60,60,20,'s')]},
+E:{t:"Legs & Conditioning",ex:[X('pistol',3,3,8,120,'r',1),X('jump_squat',4,12,20,75),X('burpee',4,12,20,60),X('hollow',3,45,60,45,'s'),X('arch',3,30,45,45,'s')]}}}
+];
+const ORDER={3:['A','B','C'],4:['A','B','C','D'],5:['A','B','C','D','E']};
+const TESTW=[12,24,38,52];
+const isTest=w=>TESTW.includes(w);
+const isDeload=w=>w%4===0&&!isTest(w);
+const WARM=[["Jumping jacks or light jog","2 min"],["Arm circles","10 each way"],["Wrist prep","1 min","wristprep"],["Cat-cow","8 reps"],["Scapular push-ups","10 reps"],["Leg swings","10 / side"],["Deep squat hold","30 s"]];
+const COOL=[["Pike stretch","45 s","pike_stretch"],["Shoulder flexion stretch","45 s","shoulder_stretch"],["Doorway chest stretch","30 s / side"],["Child's pose, deep breathing","60 s"]];
+const MS=[
+["plank60","60 s plank",6],["hollow30","30 s hollow body hold",8],["frog30","30 s frog stand",10],["pushup15","15 strict push-ups",10],["wall45","45 s wall walk-up hold",12],
+["pullup1","First strict pull-up",14],["dip5","5 parallel bar dips",16],["c2w60","60 s chest-to-wall handstand",22],["crow30","30 s crow pose",22],["kick","Consistent kick-up to wall (8 of 10)",24],["pullup8","8 strict pull-ups",24],["tlsit20","20 s tuck L-sit",24],
+["hs5","5 s freestanding handstand",30],["tfl15","15 s tuck front lever",34],["hs15","15 s freestanding handstand",38],["pbox","Box pistol to a low box (each leg)",38],
+["hspu1","First wall handstand push-up",44],["mu1","First bar muscle-up",48],["lsit15","15 s full L-sit",48],["pistol","Full pistol squat each leg",50],["tpl5","5 s tuck planche",52],["hs30","30 s+ freestanding handstand",52]];
+
+/* ===================== STATE ===================== */
+const LS='calisthenics-year-v1';
+const pad=n=>String(n).padStart(2,'0');
+const fmt=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parse=k=>{const[y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d)};
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const nice=d=>`${DOW[d.getDay()]}, ${MON[d.getMonth()]} ${d.getDate()}`;
+const short=d=>`${MON[d.getMonth()]} ${d.getDate()}`;
+function defStart(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+((8-d.getDay())%7));return fmt(d)}
+function load(){try{const r=JSON.parse(localStorage.getItem(LS));if(r&&r.start)return Object.assign({time:'18:00',log:{},ms:{},tests:[]},r)}catch(e){}return{start:defStart(),days:[1,3,5],time:'18:00',log:{},ms:{},tests:[],ok:false}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){}}
+let st=load(),SCHED=[],BY={},tab='today',viewKey=null,openEx={};
+const todayKey=()=>fmt(new Date());
+
+function build(){
+  SCHED=[];BY={};
+  const start=parse(st.start),days=[...st.days].sort(),tp=ORDER[days.length]||ORDER[3];
+  for(let w=0;w<52;w++){let i=0;for(let d=0;d<7;d++){const dt=addDays(start,w*7+d);if(st.days.includes(dt.getDay())){const s={key:fmt(dt),date:dt,week:w+1,tpl:tp[Math.min(i,tp.length-1)],idx:SCHED.length};SCHED.push(s);BY[s.key]=s;i++}}}
+}
+const phaseOf=w=>PH.find(p=>w>=p.s&&w<=p.e)||PH[3];
+function rx(sess){
+  const ph=phaseOf(sess.week),t=(sess.week-ph.s)/(ph.e-ph.s),dl=isDeload(sess.week);
+  return ph.days[sess.tpl].ex.map(p=>({...p,sets:dl?Math.max(1,p.s-1):p.s,val:Math.round(p.lo+(p.hi-p.lo)*t)}));
+}
+function rxText(r){
+  const u={r:' reps',s:' s',a:' attempts',t:' taps'}[r.u];
+  const v=r.e==='free_hs'?`${r.val} s best hold`:r.val+u;
+  return `${r.sets} × ${v}${r.side?' / side':''}`;
+}
+const fmtRest=s=>s>=60?`${Math.floor(s/60)}:${pad(s%60)} min`:`${s} s`;
+const L=k=>st.log[k]||(st.log[k]={s:{},c:false});
+const isDone=k=>!!(st.log[k]&&st.log[k].c);
+
+/* ===================== RENDER ===================== */
+const app=document.getElementById('app');
+function render(){
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===tab));
+  const tk=todayKey(),start=parse(st.start),now=parse(tk),dd=Math.round((now-start)/864e5),wk=Math.floor(dd/7)+1;
+  document.getElementById('hsub').textContent=dd<0?`Starts ${nice(start)} · ${-dd} day${dd===-1?'':'s'} to go`:wk>52?'Program complete 🎉':`Week ${wk} of 52 · ${phaseOf(wk).n}`;
+  ({today:rToday,plan:rPlan,lib:rLib,prog:rProg,set:rSet})[tab]();
+}
+
+function rToday(){
+  const tk=todayKey();let h='';
+  if(!st.ok){h+=`<div class="card hero"><h2>Welcome 👋</h2><p class="mut small">A 52-week plan that takes you from beginner basics to handstands, muscle-ups, L-sits and pistols. Choose your start date and 3–5 training days. You can change them any time in Settings.</p>${setupForm()}<div style="margin-top:14px"><button class="btn full" data-act="begin">Start my program</button></div></div>`;app.innerHTML=h;return}
+  let key=viewKey||tk,s=BY[key];
+  if(!viewKey&&!s){
+    const next=SCHED.find(x=>x.key>=tk);
+    h+=`<div class="card hero"><span class="tag">Rest day</span><div class="big">Recover today 🌿</div><p class="mut small">Walk, stretch, sleep well. Optional: 5 min of wrist prep + wall handstand practice keeps skills fresh.</p>${next?`<div style="margin-top:12px" class="row"><div class="sp"><div class="small mut">Next workout</div><b>${nice(next.date)} · ${phaseOf(next.week).days[next.tpl].t}</b></div><button class="btn" data-act="go" data-k="${next.key}">Preview</button></div>`:'<p style="margin-top:8px">You finished the whole year. Legendary. 🏆</p>'}</div>`;
+    const lastDone=[...SCHED].reverse().find(x=>x.key<tk&&!isDone(x.key)&&x.key>=fmt(addDays(parse(tk),-3)));
+    if(lastDone)h+=`<div class="card"><h3>Missed one?</h3><p class="small mut">${nice(lastDone.date)} · ${phaseOf(lastDone.week).days[lastDone.tpl].t} isn't checked off. Make it up today if you feel fresh.</p><button class="btn sec" style="margin-top:8px" data-act="go" data-k="${lastDone.key}">Open it</button></div>`;
+    app.innerHTML=h;return;
+  }
+  if(!s){viewKey=null;return rToday()}
+  h+=sessionHTML(s);
+  app.innerHTML=h;
+}
+
+function sessionHTML(s){
+  const ph=phaseOf(s.week),d=ph.days[s.tpl],list=rx(s),lg=L(s.key),tk=todayKey();
+  const prev=SCHED[s.idx-1],next=SCHED[s.idx+1];
+  let h=`<div class="datenav"><button data-act="go" data-k="${prev?prev.key:''}" ${prev?'':'disabled'}>‹</button><div class="d">${s.key===tk?'Today · ':''}${nice(s.date)}</div><button data-act="go" data-k="${next?next.key:''}" ${next?'':'disabled'}>›</button></div>`;
+  if(s.key!==tk&&viewKey)h+=`<div style="margin:-4px 0 10px;text-align:center"><button class="btn sec" style="padding:6px 12px;font-size:13px" data-act="home">← Back to today</button></div>`;
+  h+=`<div class="card hero" style="border-left-color:${ph.col}"><div class="row"><span class="tag" style="color:${ph.col};border-color:${ph.col}">Phase ${PH.indexOf(ph)+1} · ${ph.n}</span><span class="tag">Week ${s.week}</span>${isDeload(s.week)?'<span class="tag deload">Deload</span>':''}${isTest(s.week)?'<span class="tag test">Test week</span>':''}${lg.c?'<span class="tag done">Done ✓</span>':''}</div><div class="big">${d.t}</div><div class="small mut">${list.length} exercises · ~${estMin(list)} min · tap a set when you finish it and the rest timer starts</div>`;
+  if(isDeload(s.week))h+=`<p class="small tip" style="margin-top:10px">Deload week: one fewer set per exercise. Move smoothly, focus on perfect form, and let your joints recover.</p>`;
+  if(isTest(s.week))h+=`<p class="small tip" style="margin-top:10px">Test week: on your last session (or a rest day), record your max push-ups, pull-ups, dips, handstand and L-sit holds in <b>Progress → Tests</b>.</p>`;
+  h+=`</div>`;
+  h+=`<details class="card"><summary>🔥 Warm-up (≈7 min)</summary><ul class="list" style="margin-top:8px">${WARM.map(w=>`<li><span class="sp">${w[0]}${w[2]?` <a class="small" style="color:var(--acc)" target="_blank" rel="noopener" href="${yt(EX[w[2]].q)}">▶</a>`:''}</span><span class="mut small">${w[1]}</span></li>`).join('')}</ul></details>`;
+  list.forEach((r,i)=>{
+    const e=EX[r.e],done=lg.s[i]||0,all=done>=r.sets,ok=openEx[s.key+i];
+    h+=`<div class="ex ${all?'alldone':''}"><div class="top"><div class="num">${all?'✓':i+1}</div><div class="sp"><div class="nm">${e.n}</div><div class="rx">${rxText(r)}</div><div class="rest">Rest ${fmtRest(r.rest)} between sets</div></div></div>
+    <div class="sets">${Array.from({length:r.sets},(_,j)=>`<button class="set ${j<done?'on':''}" data-act="set" data-k="${s.key}" data-i="${i}" data-j="${j}">${j<done?'✓':'Set '+(j+1)}</button>`).join('')}</div>
+    <button class="more" data-act="exi" data-v="${s.key+i}">${ok?'▴ Hide':'▾ How to do it · video · easier/harder'}</button>${ok?`<div class="det">${exDetail(r.e)}</div>`:''}</div>`;
+  });
+  h+=`<details class="card"><summary>🧘 Cool-down (≈4 min)</summary><ul class="list" style="margin-top:8px">${COOL.map(w=>`<li><span class="sp">${w[0]}</span><span class="mut small">${w[1]}</span></li>`).join('')}</ul></details>`;
+  h+=`<div class="card"><label class="f" style="margin-top:0">Notes (how it felt, best holds, variations used)</label><textarea data-act="note" data-k="${s.key}" placeholder="e.g. Hit 12 push-ups on set 1, wrists a bit sore">${esc(lg.n||'')}</textarea><div style="margin-top:12px">${lg.c?`<button class="btn sec full" data-act="complete" data-k="${s.key}">Mark as not done</button>`:`<button class="btn ok full" data-act="complete" data-k="${s.key}">✓ Mark workout complete</button>`}</div></div>`;
+  h+=`<p class="small mut" style="margin:6px 4px 14px">Too easy? Hit the top of the target with perfect form → use the "Harder" variation. Too hard? Use "Easier" and work up to it.</p>`;
+  return h;
+}
+function estMin(list){let t=420+240;list.forEach(r=>{t+=r.sets*(r.u==='s'?r.val+10:r.val*3+5)*(r.side?2:1)+(r.sets-1)*r.rest+30});return Math.round(t/60/5)*5}
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function exDetail(id){const e=EX[id];return `<ol>${e.how.map(x=>`<li>${x}</li>`).join('')}</ol>${e.tip?`<p class="tip">💡 ${e.tip}</p>`:''}${e.easy?`<p><b>Easier:</b> ${e.easy}</p>`:''}${e.hard?`<p><b>Harder:</b> ${e.hard}</p>`:''}<a class="vid" target="_blank" rel="noopener" href="${yt(e.q)}">▶ Watch video tutorials</a>`}
+
+function rPlan(){
+  const tk=todayKey(),cw=Math.floor((parse(tk)-parse(st.start))/864e5/7)+1;
+  let h=`<div class="card"><h2>Your 52-week roadmap</h2><p class="small mut">${st.days.length} days/week · starts ${nice(parse(st.start))}. Every 4th week is a lighter <b>deload</b>. Weeks 12, 24, 38 and 52 are <b>test weeks</b>. Reps and hold times increase automatically each week.</p><p class="small" style="margin-top:8px"><b>Equipment:</b> pull-up bar, a wall, something for dips (parallel bars, two sturdy chairs or a counter corner), a mat. Parallettes are optional but useful from Phase 3.</p><p class="small mut" style="margin-top:8px">Tap any session to open it. Green = done, red outline = missed.</p></div>`;
+  PH.forEach((p,pi)=>{
+    h+=`<div class="card phase" style="--pc:${p.col}"><h2 style="color:${p.col}">Phase ${pi+1}: ${p.n}</h2><div class="small mut">Weeks ${p.s}–${p.e}</div><p class="small" style="margin:6px 0 4px">${p.goal}</p><details style="margin:8px 0"><summary class="small">Session templates</summary><div class="small" style="margin-top:6px">${(ORDER[st.days.length]||ORDER[3]).map(k=>`<p style="margin:6px 0"><b>${p.days[k].t}:</b> <span class="mut">${p.days[k].ex.map(x=>EX[x.e].n).join(' · ')}</span></p>`).join('')}</div></details>`;
+    for(let w=p.s;w<=p.e;w++){
+      const ss=SCHED.filter(x=>x.week===w);if(!ss.length)continue;
+      h+=`<div class="wk ${w===cw?'cur':''}" ${w===cw?'id="curwk"':''}><div class="wl"><b>Wk ${w}</b><span class="mut">${short(ss[0].date)}</span>${isDeload(w)?'<div class="small" style="color:var(--p1)">deload</div>':''}${isTest(w)?'<div class="small" style="color:var(--acc)">test</div>':''}</div><div class="chips">${ss.map(x=>{const dn=isDone(x.key),ms=!dn&&x.key<tk;return `<button class="chip ${dn?'done':''} ${ms?'miss':''} ${x.key===tk?'today':''}" data-act="go" data-k="${x.key}" title="${p.days[x.tpl].t}">${DOW[x.date.getDay()]}<small>${p.days[x.tpl].t.split(' ')[0]}</small></button>`}).join('')}</div></div>`;
+    }
+    h+=`</div>`;
+  });
+  app.innerHTML=h;
+  const c=document.getElementById('curwk');if(c)setTimeout(()=>c.scrollIntoView({block:'center'}),30);
+}
+
+let libQ='';
+function rLib(){
+  let h=`<input class="search" placeholder="Search exercises…" value="${esc(libQ)}" data-act="libq" id="libq">`;
+  const cats=['Handstand','Push','Pull','Core','Legs','Mobility','Conditioning'];
+  cats.forEach(c=>{
+    const ids=Object.keys(EX).filter(k=>EX[k].c===c&&EX[k].n.toLowerCase().includes(libQ.toLowerCase()));
+    if(!ids.length)return;
+    h+=`<div class="libgrp">${c}</div>`;
+    ids.forEach(id=>{const ok=openEx['lib'+id];h+=`<div class="ex"><button class="more" style="border:0;color:var(--tx);font-size:15px;font-weight:700;padding:14px 16px" data-act="exi" data-v="lib${id}">${EX[id].n}<span style="float:right;color:var(--mut)">${ok?'▴':'▾'}</span></button>${ok?`<div class="det">${exDetail(id)}</div>`:''}</div>`});
+  });
+  app.innerHTML=h;
+  const q=document.getElementById('libq');if(libQ){q.focus();q.setSelectionRange(libQ.length,libQ.length)}
+}
+
+function rProg(){
+  const tk=todayKey(),past=SCHED.filter(x=>x.key<=tk),done=SCHED.filter(x=>isDone(x.key)).length;
+  let streak=0;for(let i=past.length-1;i>=0;i--){if(isDone(past[i].key))streak++;else if(past[i].key===tk)continue;else break}
+  const rate=past.length?Math.round(SCHED.filter(x=>x.key<=tk&&isDone(x.key)).length/past.length*100):0;
+  const msd=MS.filter(m=>st.ms[m[0]]).length;
+  let h=`<div class="stats"><div class="stat"><b>${done}</b><span>workouts done of ${SCHED.length}</span></div><div class="stat"><b>${streak}🔥</b><span>session streak</span></div><div class="stat"><b>${rate}%</b><span>consistency so far</span></div><div class="stat"><b>${msd}/${MS.length}</b><span>skills unlocked</span></div></div>`;
+  h+=`<div class="card"><h3>Year progress</h3><div class="bar"><i style="width:${Math.round(done/SCHED.length*100)}%"></i></div><div class="small mut">${Math.round(done/SCHED.length*100)}% of all sessions complete</div></div>`;
+  h+=`<div class="card"><h3>Skill milestones</h3><p class="small mut">Tick them off as you hit them. The week shown is a typical target. Everyone progresses differently, so don't stress if you're behind.</p>${MS.map(m=>`<div class="ms"><div class="chk ${st.ms[m[0]]?'on':''}" data-act="ms" data-v="${m[0]}">${st.ms[m[0]]?'✓':''}</div><div class="n">${m[1]}${st.ms[m[0]]?`<div class="w" style="color:var(--ok)">Unlocked ${short(parse(st.ms[m[0]]))}</div>`:''}</div><div class="w">~wk ${m[2]}</div></div>`).join('')}</div>`;
+  h+=`<div class="card"><h3>Tests (max effort)</h3><p class="small mut">Do these in test weeks (12, 24, 38, 52) and at the very start to see how far you've come.</p>
+  <div class="grid2"><div><label class="f">Date</label><input type="date" id="t_d" value="${tk}"></div><div><label class="f">Push-ups (reps)</label><input type="number" inputmode="numeric" id="t_pu"></div><div><label class="f">Pull-ups (reps)</label><input type="number" inputmode="numeric" id="t_pl"></div><div><label class="f">Dips (reps)</label><input type="number" inputmode="numeric" id="t_dp"></div><div><label class="f">Handstand hold (s)</label><input type="number" inputmode="numeric" id="t_hs"></div><div><label class="f">L-sit / tuck L-sit (s)</label><input type="number" inputmode="numeric" id="t_ls"></div></div>
+  <button class="btn" style="margin-top:12px" data-act="addtest">Save test</button>
+  ${st.tests.length?`<table style="margin-top:14px"><tr><th>Date</th><th>Push</th><th>Pull</th><th>Dip</th><th>HS</th><th>L-sit</th><th></th></tr>${st.tests.map((t,i)=>`<tr><td>${short(parse(t.d))}</td><td>${t.pu??'–'}</td><td>${t.pl??'–'}</td><td>${t.dp??'–'}</td><td>${t.hs!=null?t.hs+'s':'–'}</td><td>${t.ls!=null?t.ls+'s':'–'}</td><td><button class="chip" style="min-width:0" data-act="deltest" data-v="${i}">✕</button></td></tr>`).join('')}</table>`:''}</div>`;
+  app.innerHTML=h;
+}
+
+function setupForm(){
+  return `<label class="f">Start date (week 1, day 1)</label><input type="date" id="s_start" value="${st.start}">
+  <label class="f">Training days (choose 3–5)</label><div class="days">${[1,2,3,4,5,6,0].map(d=>`<button class="day ${st.days.includes(d)?'on':''}" data-act="day" data-v="${d}">${DOW[d].slice(0,2)}</button>`).join('')}</div>
+  <p class="small mut" style="margin-top:8px" id="dayhint">${dayHint()}</p>`;
+}
+function dayHint(){const n=st.days.length;return n<3?'Pick at least 3 days.':n>5?'Pick at most 5 days.':n===3?'3 days: Push · Pull · Full body/skills. Great for beginners.':n===4?'4 days: adds a dedicated Handstand & Mobility day.':'5 days: adds Handstand & Mobility plus a Legs & Conditioning day.'}
+function rSet(){
+  app.innerHTML=`<div class="card"><h2>Schedule</h2>${setupForm()}<label class="f">Usual workout time (for calendar events)</label><input type="time" id="s_time" value="${st.time}"><div class="row" style="margin-top:14px"><button class="btn" data-act="saveset">Save schedule</button></div><p class="small mut" style="margin-top:8px">Changing days or the start date re-maps the plan. Logs stay attached to their dates.</p></div>
+  <div class="card"><h2>Add to your calendar</h2><p class="small mut">Downloads a .ics file with every workout for the year (with a 30-minute reminder). Open it on your phone, or import it into Google Calendar (Settings → Import) or Apple Calendar.</p><button class="btn sec" style="margin-top:10px" data-act="ics">📅 Download calendar (.ics)</button></div>
+  <div class="card"><h2>Backup</h2><p class="small mut">Progress is saved in this browser. Export a backup to move it to another device.</p><div class="row" style="margin-top:10px"><button class="btn sec" data-act="export">⬇ Export</button><label class="btn sec" style="cursor:pointer">⬆ Import<input type="file" accept=".json" id="imp" style="display:none"></label></div></div>
+  <div class="card"><h2>Reset</h2><button class="btn bad" data-act="reset">Erase all progress</button></div>
+  <p class="foot">Train smart: warm up every time, stop on sharp or joint pain, and check with a doctor before starting if you have injuries or health conditions.</p>`;
+}
+
+/* ===================== TIMER ===================== */
+let T={end:0,id:null},actx=null;
+const tEl=document.getElementById('timer');
+function beep(){try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();[0,.25,.5].forEach(o=>{const g=actx.createGain(),os=actx.createOscillator();os.frequency.value=880;os.connect(g);g.connect(actx.destination);g.gain.setValueAtTime(.25,actx.currentTime+o);g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+o+.2);os.start(actx.currentTime+o);os.stop(actx.currentTime+o+.2)})}catch(e){}try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}}
+function startRest(sec,label){try{actx=actx||new(window.AudioContext||window.webkitAudioContext)()}catch(e){}T.end=Date.now()+sec*1000;document.getElementById('tl').innerHTML=`<b>Rest</b>${label}`;tEl.classList.remove('go');tEl.classList.add('show');clearInterval(T.id);T.id=setInterval(tick,250);tick()}
+function tick(){const left=Math.max(0,Math.ceil((T.end-Date.now())/1000));document.getElementById('tt').textContent=`${Math.floor(left/60)}:${pad(left%60)}`;if(left<=0){clearInterval(T.id);beep();tEl.classList.add('go');document.getElementById('tl').innerHTML='<b>Go! 💪</b>Next set';setTimeout(()=>{if(Date.now()>=T.end)tEl.classList.remove('show')},4000)}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+
+/* ===================== ICS ===================== */
+function ics(){
+  const [hh,mm]=(st.time||'18:00').split(':');
+  const esc2=s=>s.replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');
+  const fold=l=>{let o='';while(l.length>73){o+=l.slice(0,73)+'\r\n ';l=l.slice(73)}return o+l};
+  const stamp=new Date().toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';
+  let out=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Year of Calisthenics//EN','CALSCALE:GREGORIAN','X-WR-CALNAME:Calisthenics'];
+  SCHED.forEach(s=>{
+    const ph=phaseOf(s.week),d=ph.days[s.tpl],dt=s.key.replace(/-/g,'')+`T${hh}${mm}00`;
+    const desc=`Week ${s.week} · Phase ${PH.indexOf(ph)+1}: ${ph.n}${isDeload(s.week)?' (Deload)':''}${isTest(s.week)?' (Test week)':''}\n\n`+rx(s).map(r=>`• ${EX[r.e].n}: ${rxText(r)} (rest ${fmtRest(r.rest)})`).join('\n')+`\n\nWarm up first! Open your tracker to log sets.`;
+    out.push('BEGIN:VEVENT',`UID:cali-${s.key}-${s.tpl}@yearofcalisthenics`,`DTSTAMP:${stamp}`,`DTSTART:${dt}`,'DURATION:PT60M',fold('SUMMARY:'+esc2(`💪 Calisthenics: ${d.t} (Wk ${s.week})`)),fold('DESCRIPTION:'+esc2(desc)),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Workout in 30 min','TRIGGER:-PT30M','END:VALARM','END:VEVENT');
+  });
+  out.push('END:VCALENDAR');
+  dl(new Blob([out.join('\r\n')],{type:'text/calendar'}),'calisthenics-year.ics');
+}
+function dl(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
+
+/* ===================== EVENTS ===================== */
+function readSetup(){const s=document.getElementById('s_start');if(s&&s.value)st.start=s.value;const t=document.getElementById('s_time');if(t&&t.value)st.time=t.value}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-act]');if(!t)return;const a=t.dataset.act,v=t.dataset.v;
+  if(a==='tab'){tab=v;if(v==='today')viewKey=null;render();scrollTo(0,0)}
+  else if(a==='go'){if(!t.dataset.k)return;viewKey=t.dataset.k===todayKey()?null:t.dataset.k;tab='today';render();scrollTo(0,0)}
+  else if(a==='home'){viewKey=null;render();scrollTo(0,0)}
+  else if(a==='set'){
+    const k=t.dataset.k,i=+t.dataset.i,j=+t.dataset.j,lg=L(k),cur=lg.s[i]||0,s=BY[k],list=rx(s),r=list[i];
+    if(j<cur)lg.s[i]=j;else{lg.s[i]=j+1;const last=lg.s[i]>=r.sets;
+      if(list.every((x,ix)=>(lg.s[ix]||0)>=x.sets)){lg.c=true;toast('Workout complete! 🎉');tEl.classList.remove('show');clearInterval(T.id)}
+      else if(!last)startRest(r.rest,`${EX[r.e].n}: set ${j+2} of ${r.sets} next`);
+      else{const nx=list[i+1];startRest(r.rest,nx?`Next: ${EX[nx.e].n}`:'Finish remaining sets')}}
+    save();const y=scrollY;render();scrollTo(0,y);
+  }
+  else if(a==='exi'){openEx[v]=!openEx[v];const y=scrollY;render();scrollTo(0,y)}
+  else if(a==='complete'){const lg=L(t.dataset.k);lg.c=!lg.c;save();if(lg.c)toast('Nice work! ✓');render()}
+  else if(a==='day'){const d=+v;st.days=st.days.includes(d)?st.days.filter(x=>x!==d):[...st.days,d];document.querySelectorAll('.day').forEach(b=>b.classList.toggle('on',st.days.includes(+b.dataset.v)));document.getElementById('dayhint').textContent=dayHint()}
+  else if(a==='begin'||a==='saveset'){readSetup();if(st.days.length<3||st.days.length>5){toast('Pick 3–5 days');return}st.ok=true;save();build();toast(a==='begin'?"Let's go! 💪":'Schedule saved');if(a==='begin'){tab='today'}render()}
+  else if(a==='ms'){st.ms[v]?delete st.ms[v]:st.ms[v]=todayKey();if(st.ms[v])toast('Skill unlocked! 🏅');save();render()}
+  else if(a==='addtest'){const g=id=>{const x=document.getElementById(id).value;return x===''?null:+x};const t2={d:document.getElementById('t_d').value||todayKey(),pu:g('t_pu'),pl:g('t_pl'),dp:g('t_dp'),hs:g('t_hs'),ls:g('t_ls')};st.tests.push(t2);st.tests.sort((x,y)=>x.d<y.d?-1:1);save();toast('Test saved');render()}
+  else if(a==='deltest'){st.tests.splice(+v,1);save();render()}
+  else if(a==='ics'){readSetup();save();ics()}
+  else if(a==='export'){dl(new Blob([JSON.stringify(st,null,1)],{type:'application/json'}),'calisthenics-backup.json')}
+  else if(a==='reset'){if(confirm('Erase all logged workouts, milestones and tests?')){st.log={};st.ms={};st.tests=[];save();render();toast('Progress reset')}}
+  else if(a==='tadd'){T.end+=(+v)*1000;if(T.end<Date.now())T.end=Date.now();tEl.classList.remove('go');clearInterval(T.id);T.id=setInterval(tick,250);tick()}
+  else if(a==='tskip'){clearInterval(T.id);tEl.classList.remove('show')}
+});
+document.addEventListener('input',e=>{
+  const t=e.target;if(t.dataset.act==='note'){L(t.dataset.k).n=t.value;save()}
+  else if(t.dataset.act==='libq'){libQ=t.value;rLib()}
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='imp'){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.start)throw 0;st=Object.assign({time:'18:00',log:{},ms:{},tests:[]},d);save();build();render();toast('Backup restored')}catch(x){toast('Invalid backup file')}};r.readAsText(f)}
+});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&tEl.classList.contains('show'))tick()});
+
+build();render();
+</script>
+</body>
+</html>
