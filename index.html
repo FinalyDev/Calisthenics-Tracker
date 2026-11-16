@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>Year of Calisthenics — Beginner to Advanced</title>
+<title>Hybrid Strength Year — Weights + Calisthenics</title>
 <style>
 :root{--bg:#0f1115;--card:#181b22;--card2:#20242d;--line:#2a2f3a;--tx:#e9ecf1;--mut:#9aa3b2;--acc:#ffb020;--ok:#3ddc84;--bad:#ff5c5c;--p1:#4cc9f0;--p2:#7bd88f;--p3:#ffb020;--p4:#ff6b9d;--r:14px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -65,6 +65,11 @@ nav button.on{color:var(--acc)}
 .list li:last-child{border-bottom:0}
 .chk{width:22px;height:22px;border-radius:6px;border:2px solid var(--line);flex:none;display:grid;place-items:center;cursor:pointer;background:var(--card2);font-size:13px}
 .chk.on{background:var(--ok);border-color:var(--ok);color:#002210}
+  .wt{padding:0 16px 12px 56px}
+.wt input[type=number]{width:120px;padding:8px 10px}
+.upl{display:flex;gap:8px;align-items:center;margin-top:8px;color:var(--mut)}
+.upl input{width:18px;height:18px;accent-color:var(--ok)}
+.tblw{overflow-x:auto}
 details summary{cursor:pointer;font-weight:700;list-style:none}
 details summary::-webkit-details-marker{display:none}
 details summary::after{content:"▾";float:right;color:var(--mut)}
@@ -118,7 +123,7 @@ th{color:var(--mut);font-weight:600}
 </style>
 </head>
 <body>
-<header><div class="in"><div class="logo">🤸</div><div><h1>Year of Calisthenics</h1><div class="sub" id="hsub"></div></div></div></header>
+<header><div class="in"><div class="logo">🤸</div><div><h1>Hybrid Strength Year</h1><div class="sub" id="hsub"></div></div></div></header>
 <main id="app"></main>
 <div id="timer"><div class="t" id="tt">0:00</div><div class="l" id="tl"></div><button data-act="tadd" data-v="-15">−15</button><button data-act="tadd" data-v="15">+15</button><button data-act="tskip">✕</button></div>
 <div id="toast"></div>
@@ -189,48 +194,64 @@ tuck_planche:{n:"Tuck Planche",c:"Push",how:["Hands on the floor or parallettes,
 pike_compress:{n:"Pike Compression Lifts",c:"Mobility",how:["Sit with legs straight and together, hands on the floor beside your knees.","Lean forward slightly and lift both heels off the floor using your hip flexors.","Lower and repeat."],tip:"Builds the compression for L-sits and press handstands.",q:"pike compression lifts"},
 pike_stretch:{n:"Pike Stretch",c:"Mobility",how:["Sit with legs straight and together.","Hinge at the hips with a flat back, reaching toward your toes.","Relax deeper on each exhale."],q:"pike stretch flexibility"},
 shoulder_stretch:{n:"Shoulder Flexion Stretch",c:"Mobility",how:["Kneel facing a bench or couch, elbows on it, hands together.","Sink your chest toward the floor so your arms go overhead.","Hold and breathe."],tip:"Open shoulders = straight handstand line.",q:"shoulder flexion stretch for handstand"},
+goblet_squat:{n:"Goblet Squat",c:"Weights",how:["Hold a dumbbell or kettlebell vertically against your chest, elbows pointing down.","Feet shoulder-width, sit down between your heels with your chest tall.","Elbows brush the insides of your knees at the bottom; drive up through your whole foot."],tip:"The best way to learn squat depth and posture before the barbell.",easy:"Bodyweight squat to a box.",hard:"Barbell back squat.",q:"goblet squat form tutorial",lower:1},
+db_bench:{n:"Dumbbell Bench Press",c:"Weights",how:["Lie on a flat bench with a dumbbell in each hand over your chest, feet flat.","Pull your shoulder blades together and down.","Lower the dumbbells to the sides of your chest (elbows ~45°), then press up and slightly in."],easy:"Push-ups.",hard:"Barbell bench press.",q:"dumbbell bench press form"},
+db_ohp:{n:"Dumbbell Shoulder Press",c:"Weights",how:["Seated or standing, dumbbells at shoulder height, palms forward or facing in.","Brace your abs and squeeze your glutes (no leaning back).","Press straight overhead until your arms are locked by your ears, then lower to your shoulders."],tip:"Pressing strength overhead carries straight over to handstands and handstand push-ups.",easy:"Lighter dumbbells or seated with back support.",hard:"Barbell overhead press.",q:"dumbbell shoulder press form"},
+db_row:{n:"One-Arm Dumbbell Row",c:"Weights",how:["One hand and knee on a bench, back flat, dumbbell in the other hand.","Pull the dumbbell toward your hip, elbow close to your body.","Lower until your arm is straight and repeat; switch sides."],easy:"Lighter weight / Australian rows.",hard:"Barbell row.",q:"one arm dumbbell row form"},
+rdl:{n:"Romanian Deadlift",c:"Weights",how:["Hold a barbell or dumbbells in front of your thighs, knees slightly bent.","Push your hips back, sliding the weight down your legs with a flat back until you feel a strong hamstring stretch (usually just below the knee).","Squeeze your glutes to drive your hips forward and stand tall."],tip:"Keep the weight touching your legs the whole time.",easy:"Kettlebell or single dumbbell.",hard:"Conventional deadlift.",q:"romanian deadlift form tutorial",lower:1},
+lat_pulldown:{n:"Lat Pulldown",c:"Weights",how:["Grip the bar slightly wider than shoulders, thighs under the pads.","Lean back slightly, pull your shoulder blades down, then pull the bar to your upper chest.","Return slowly to straight arms."],tip:"No machine? Use band-assisted pull-ups instead.",easy:"Lighter stack.",hard:"Pull-ups.",q:"lat pulldown proper form"},
+db_lunge:{n:"Dumbbell Reverse Lunge",c:"Weights",how:["Hold a dumbbell in each hand at your sides.","Step one foot back and lower the back knee toward the floor, front shin near vertical.","Push through the front heel to return. All reps one side, then switch."],easy:"Bodyweight reverse lunges.",hard:"Bulgarian split squats with dumbbells.",q:"dumbbell reverse lunge form",lower:1},
+kb_swing:{n:"Kettlebell Swing",c:"Weights",how:["Kettlebell a step in front of you, hinge and grab it with both hands.","Hike it back between your legs, then snap your hips forward so it floats to chest height.","Let it fall back into the hinge and repeat. Arms just guide it."],tip:"It's a hip hinge, not a squat or an arm raise.",easy:"Lighter bell.",q:"kettlebell swing tutorial",lower:1},
+hip_thrust:{n:"Barbell Hip Thrust",c:"Weights",how:["Upper back on a bench, barbell (with a pad) over your hips, feet flat.","Drive through your heels and squeeze your glutes to lift your hips until your body is flat from knees to shoulders.","Pause 1 s, lower."],easy:"Glute bridge or dumbbell on hips.",hard:"Single-leg hip thrust.",q:"barbell hip thrust form",lower:1},
+bench:{n:"Barbell Bench Press",c:"Weights",how:["Lie on the bench, eyes under the bar, grip a little wider than shoulders, feet planted.","Squeeze your shoulder blades together, unrack, and lower the bar to your mid/lower chest.","Press back up to lockout over your shoulders."],tip:"Use safety pins or a spotter when you go heavy.",easy:"Dumbbell bench press.",hard:"Pause bench (1 s on chest).",q:"barbell bench press form tutorial"},
+deadlift:{n:"Deadlift",c:"Weights",how:["Bar over mid-foot, feet hip-width. Hinge and grip just outside your legs.","Shins to the bar, chest up, flat back, pull the slack out of the bar.","Push the floor away and stand up, keeping the bar close. Lower it the same way."],tip:"Reset every rep. Your back should never round. Lower the weight if it does.",easy:"Romanian deadlift or trap-bar deadlift.",q:"how to deadlift proper form beginner",lower:1},
+barbell_row:{n:"Barbell Row",c:"Weights",how:["Hold the bar with an overhand grip, hinge forward to about 45° with a flat back.","Pull the bar to your lower chest/upper stomach, squeezing your shoulder blades.","Lower under control."],easy:"Dumbbell rows.",hard:"Pendlay rows from the floor.",q:"barbell row proper form"},
+back_squat:{n:"Barbell Back Squat",c:"Weights",how:["Bar on your upper back (not your neck), grip just outside shoulders, step out of the rack.","Brace hard, then sit down and back until your hip crease is below your knees.","Drive up, keeping your chest up and knees tracking over toes."],tip:"Set the safety arms just below your bottom position.",easy:"Goblet squat.",hard:"Pause squats.",q:"barbell back squat form tutorial",lower:1},
+ohp:{n:"Overhead Press",c:"Weights",how:["Bar on the front of your shoulders, grip just outside shoulder-width, elbows slightly in front of the bar.","Squeeze glutes and abs, then press the bar straight up, moving your head back and then 'through' once it passes.","Lock out with the bar over your mid-foot and lower to your shoulders."],tip:"The lift that carries over most to handstand push-ups.",easy:"Dumbbell shoulder press.",hard:"Push press for heavier overload.",q:"overhead press form tutorial"},
+weighted_dip:{n:"Weighted Dip",c:"Weights",how:["Add weight with a dip belt, a dumbbell between your feet, or a loaded backpack.","Perform strict parallel bar dips: shoulders just below elbows, full lockout at the top."],easy:"Bodyweight dips.",q:"weighted dips form"},
+weighted_pullup:{n:"Weighted Pull-Up",c:"Weights",how:["Add weight with a dip belt, a dumbbell between your feet, or a backpack.","Strict pull-ups from a dead hang to chin over the bar."],tip:"Strength for muscle-ups and front lever.",easy:"Bodyweight pull-ups.",q:"weighted pull ups tutorial"},
 burpee:{n:"Burpee",c:"Conditioning",how:["From standing, squat and place your hands down.","Jump your feet back to a plank (add a push-up if you like).","Jump your feet in and jump up with arms overhead."],easy:"Step back instead of jumping.",q:"burpee proper form"}
 };
 
 /* ===================== PROGRAM ===================== */
 const X=(e,s,lo,hi,rest,u='r',side=0)=>({e,s,lo,hi,rest,u,side});
 const PH=[
-{n:"Foundation",s:1,e:12,col:"var(--p1)",goal:"Build joint strength and perfect form, learn the hollow body shape, and get comfortable upside down.",days:{
-A:{t:"Push & Legs",ex:[X('pushup',3,6,15,90),X('pike_pushup',3,4,10,90),X('squat',3,12,25,60),X('wall_plank',3,15,40,90,'s'),X('plank',3,20,60,60,'s')]},
-B:{t:"Pull & Core",ex:[X('scap_pull',2,8,12,60),X('aus_row',3,6,15,90),X('neg_pullup',3,3,6,120),X('dead_hang',3,15,45,90,'s'),X('glute_bridge',3,12,20,60),X('hollow',3,15,40,60,'s')]},
-C:{t:"Full Body & Balance",ex:[X('frog_stand',3,10,30,60,'s'),X('pushup',3,6,15,90),X('lunge',3,6,12,60,'r',1),X('bench_dip',3,6,15,90),X('aus_row',3,6,15,90),X('arch',3,15,30,60,'s')]},
+{n:"Foundation",s:1,e:12,col:"var(--p1)",goal:"Learn the main lifts with light weights and perfect form, build joint strength, master the hollow body and get comfortable upside down. Lifts: 8–12 reps.",days:{
+A:{t:"Push & Squat",ex:[X('wall_plank',3,15,40,90,'s'),X('goblet_squat',3,8,12,90,'w'),X('db_bench',3,8,12,90,'w'),X('pike_pushup',3,4,10,90),X('pushup',2,6,15,60),X('plank',3,20,60,60,'s')]},
+B:{t:"Pull & Hinge",ex:[X('scap_pull',2,8,12,60),X('rdl',3,8,12,90,'w'),X('lat_pulldown',3,8,12,90,'w'),X('neg_pullup',3,3,6,120),X('db_row',3,8,12,60,'w',1),X('hollow',3,15,40,60,'s')]},
+C:{t:"Full Body & Balance",ex:[X('frog_stand',3,10,30,60,'s'),X('db_ohp',3,8,12,90,'w'),X('db_lunge',3,8,12,90,'w',1),X('aus_row',3,6,15,90),X('bench_dip',3,6,15,90),X('arch',3,15,30,60,'s')]},
 D:{t:"Handstand & Mobility",ex:[X('wall_plank',4,15,45,90,'s'),X('frog_stand',3,10,30,60,'s'),X('hollow',3,15,40,60,'s'),X('pike_compress',3,6,15,45),X('pike_stretch',2,30,60,20,'s'),X('shoulder_stretch',2,30,60,20,'s')]},
-E:{t:"Legs & Conditioning",ex:[X('squat',4,15,30,60),X('step_up',3,8,15,60,'r',1),X('glute_bridge',3,15,25,60),X('calf_raise',3,15,25,45),X('burpee',3,5,12,60),X('side_plank',2,15,40,45,'s',1)]}}},
-{n:"Build",s:13,e:24,col:"var(--p2)",goal:"First strict pull-ups and dips, 60 s wall handstands, kick-ups and crow pose.",days:{
-A:{t:"Push",ex:[X('elev_pike_pushup',4,5,12,120),X('dip',3,3,12,120),X('diamond',3,6,15,90),X('wall_hs',3,20,60,90,'s'),X('tuck_lsit',3,8,20,60,'s')]},
-B:{t:"Pull",ex:[X('pullup',4,2,8,150),X('chinup',3,2,8,120),X('aus_row',3,10,15,90),X('knee_raise',3,8,15,60),X('hollow',3,30,60,60,'s')]},
-C:{t:"Legs & Balance",ex:[X('kickup',5,3,6,60,'a'),X('crow',3,10,30,60,'s'),X('bulgarian',3,8,12,90,'r',1),X('sl_glute_bridge',3,8,15,60,'r',1),X('side_plank',3,20,45,45,'s',1)]},
+E:{t:"Legs & Conditioning",ex:[X('kb_swing',3,12,15,75,'w'),X('hip_thrust',3,8,12,90,'w'),X('step_up',3,8,15,60,'r',1),X('calf_raise',3,15,25,45),X('burpee',3,5,12,60),X('side_plank',2,15,40,45,'s',1)]}}},
+{n:"Build",s:13,e:24,col:"var(--p2)",goal:"Move to the barbell. First strict pull-ups and dips, 60 s wall handstands, kick-ups and crow pose. Lifts: 6–10 reps.",days:{
+A:{t:"Push",ex:[X('wall_hs',3,20,60,90,'s'),X('bench',4,6,10,150,'w'),X('elev_pike_pushup',3,5,12,120),X('dip',3,3,12,120),X('tuck_lsit',3,8,20,60,'s')]},
+B:{t:"Pull & Hinge",ex:[X('pullup',4,2,8,150),X('deadlift',3,5,8,180,'w'),X('barbell_row',3,6,10,120,'w'),X('knee_raise',3,8,15,60),X('hollow',3,30,60,60,'s')]},
+C:{t:"Legs & Balance",ex:[X('kickup',5,3,6,60,'a'),X('back_squat',4,6,10,180,'w'),X('bulgarian',3,8,12,90,'w',1),X('crow',3,10,30,60,'s'),X('side_plank',3,20,45,45,'s',1)]},
 D:{t:"Handstand & Mobility",ex:[X('wall_hs',4,30,60,90,'s'),X('wall_taps',3,6,16,90,'t'),X('kickup',5,3,6,60,'a'),X('pike_compress',3,10,15,45),X('pike_stretch',2,45,60,20,'s'),X('shoulder_stretch',2,45,60,20,'s')]},
-E:{t:"Legs & Conditioning",ex:[X('jump_squat',4,8,15,75),X('bulgarian',3,8,12,90,'r',1),X('nordic_neg',3,3,6,120),X('calf_raise',3,20,30,45),X('burpee',3,8,15,60),X('arch',3,20,40,45,'s')]}}},
-{n:"Strength & Skills",s:25,e:38,col:"var(--p3)",goal:"Freestanding handstand attempts, tuck front lever, archer variations, L-sit and box pistols.",days:{
-A:{t:"Push & Handstand",ex:[X('free_hs',6,3,20,60,'s'),X('box_pike_pushup',4,4,10,150),X('archer_pushup',3,3,8,120,'r',1),X('pp_pushup',3,5,12,90),X('dip',3,10,15,120)]},
-B:{t:"Pull & Lever",ex:[X('explosive_pullup',4,3,6,150),X('pullup',4,6,12,150),X('tuck_fl',4,6,20,120,'s'),X('leg_raise',3,6,12,90),X('dead_hang',2,45,60,60,'s')]},
-C:{t:"Legs & Skills",ex:[X('free_hs',6,5,20,60,'s'),X('pistol_box',3,4,8,120,'r',1),X('lsit',4,5,15,90,'s'),X('crow',3,20,45,60,'s'),X('nordic_neg',3,4,8,120)]},
+E:{t:"Shoulders & Conditioning",ex:[X('ohp',3,6,10,150,'w'),X('chinup',3,2,8,120),X('hip_thrust',3,8,12,90,'w'),X('jump_squat',3,8,12,75),X('burpee',3,8,15,60)]}}},
+{n:"Strength & Skills",s:25,e:38,col:"var(--p3)",goal:"Heavier lifts plus freestanding handstand attempts, tuck front lever, archer variations, L-sit and box pistols. Lifts: 5–8 reps.",days:{
+A:{t:"Push & Handstand",ex:[X('free_hs',6,3,20,60,'s'),X('ohp',4,5,8,180,'w'),X('box_pike_pushup',3,4,10,150),X('dip',3,10,15,120),X('archer_pushup',3,3,8,120,'r',1)]},
+B:{t:"Pull & Lever",ex:[X('explosive_pullup',4,3,6,150),X('deadlift',4,4,6,180,'w'),X('pullup',3,6,12,150),X('tuck_fl',4,6,20,120,'s'),X('leg_raise',3,6,12,90)]},
+C:{t:"Legs & Skills",ex:[X('free_hs',6,5,20,60,'s'),X('back_squat',4,5,8,180,'w'),X('rdl',3,6,10,120,'w'),X('pistol_box',3,4,8,120,'r',1),X('lsit',4,5,15,90,'s')]},
 D:{t:"Handstand & Planche",ex:[X('free_hs',8,5,25,60,'s'),X('wall_taps',3,10,20,90,'t'),X('planche_lean',4,10,25,90,'s'),X('pike_compress',3,12,20,45),X('shoulder_stretch',2,60,60,20,'s')]},
-E:{t:"Legs & Conditioning",ex:[X('jump_squat',4,10,15,75),X('pistol_box',3,5,8,90,'r',1),X('burpee',4,10,15,60),X('hollow',3,45,60,45,'s'),X('side_plank',2,30,60,45,'s',1)]}}},
-{n:"Advanced",s:39,e:52,col:"var(--p4)",goal:"Wall handstand push-ups, muscle-ups, full L-sit, tuck planche, pistols and solid freestanding handstands.",days:{
-A:{t:"Push & Handstand",ex:[X('free_hs',6,15,45,60,'s'),X('wall_hspu',5,2,8,180),X('oap_neg',3,2,5,120,'r',1),X('pp_pushup',3,8,15,90),X('dip',4,12,20,120)]},
-B:{t:"Pull & Muscle-Up",ex:[X('muscleup',5,1,5,180),X('archer_pullup',3,2,6,150,'r',1),X('adv_tuck_fl',4,6,15,120,'s'),X('lsit_pullup',3,4,8,120),X('toes_to_bar',3,5,12,90)]},
-C:{t:"Legs & Statics",ex:[X('free_hs',6,15,45,60,'s'),X('pistol',4,3,8,120,'r',1),X('tuck_planche',5,4,15,120,'s'),X('lsit',4,10,25,90,'s'),X('nordic_neg',3,5,8,120)]},
+E:{t:"Upper Strength & Conditioning",ex:[X('bench',4,5,8,180,'w'),X('barbell_row',4,6,10,120,'w'),X('pp_pushup',3,5,12,90),X('kb_swing',3,15,20,75,'w'),X('hollow',3,45,60,45,'s')]}}},
+{n:"Advanced",s:39,e:52,col:"var(--p4)",goal:"Peak strength on the big lifts plus wall handstand push-ups, muscle-ups, L-sit, tuck planche, pistols and solid freestanding handstands. Lifts: 3–6 reps.",days:{
+A:{t:"Push & Handstand",ex:[X('free_hs',6,15,45,60,'s'),X('bench',5,3,6,180,'w'),X('wall_hspu',4,2,8,180),X('weighted_dip',3,5,8,150,'w'),X('pp_pushup',3,8,15,90)]},
+B:{t:"Pull & Muscle-Up",ex:[X('muscleup',5,1,5,180),X('deadlift',4,3,5,210,'w'),X('weighted_pullup',4,3,6,180,'w'),X('adv_tuck_fl',4,6,15,120,'s'),X('toes_to_bar',3,5,12,90)]},
+C:{t:"Legs & Statics",ex:[X('free_hs',6,15,45,60,'s'),X('back_squat',5,3,6,210,'w'),X('pistol',3,3,8,120,'r',1),X('tuck_planche',5,4,15,120,'s'),X('lsit',4,10,25,90,'s')]},
 D:{t:"Handstand Mastery",ex:[X('free_hs',8,20,60,60,'s'),X('wall_taps',3,16,24,90,'t'),X('tuck_planche',4,5,15,120,'s'),X('planche_lean',3,20,30,90,'s'),X('pike_compress',3,15,20,45),X('shoulder_stretch',2,60,60,20,'s')]},
-E:{t:"Legs & Conditioning",ex:[X('pistol',3,3,8,120,'r',1),X('jump_squat',4,12,20,75),X('burpee',4,12,20,60),X('hollow',3,45,60,45,'s'),X('arch',3,30,45,45,'s')]}}}
+E:{t:"Upper Strength & Conditioning",ex:[X('ohp',4,4,6,180,'w'),X('barbell_row',4,5,8,120,'w'),X('lsit_pullup',3,4,8,120),X('hip_thrust',3,6,10,90,'w'),X('burpee',3,12,20,60)]}}}
 ];
 const ORDER={3:['A','B','C'],4:['A','B','C','D'],5:['A','B','C','D','E']};
 const TESTW=[12,24,38,52];
 const isTest=w=>TESTW.includes(w);
 const isDeload=w=>w%4===0&&!isTest(w);
-const WARM=[["Jumping jacks or light jog","2 min"],["Arm circles","10 each way"],["Wrist prep","1 min","wristprep"],["Cat-cow","8 reps"],["Scapular push-ups","10 reps"],["Leg swings","10 / side"],["Deep squat hold","30 s"]];
-const COOL=[["Pike stretch","45 s","pike_stretch"],["Shoulder flexion stretch","45 s","shoulder_stretch"],["Doorway chest stretch","30 s / side"],["Child's pose, deep breathing","60 s"]];
+const WARM=[["Jumping jacks, bike or row","3 min"],["Arm circles","10 each way"],["Wrist prep","1 min","wristprep"],["Cat-cow","8 reps"],["Scapular push-ups","10 reps"],["Leg swings","10 / side"],["Deep squat hold","30 s"],["Ramp-up sets before your first lift: empty bar or light weight, then ~50% and ~75% of today's weight","2–3 sets"]];
+const COOL=[["Pike stretch","45 s","pike_stretch"],["Shoulder flexion stretch","45 s","shoulder_stretch"],["Doorway chest stretch","30 s / side"],["Couch / hip flexor stretch","30 s / side"],["Child's pose, deep breathing","60 s"]];
 const MS=[
 ["plank60","60 s plank",6],["hollow30","30 s hollow body hold",8],["frog30","30 s frog stand",10],["pushup15","15 strict push-ups",10],["wall45","45 s wall walk-up hold",12],
 ["pullup1","First strict pull-up",14],["dip5","5 parallel bar dips",16],["c2w60","60 s chest-to-wall handstand",22],["crow30","30 s crow pose",22],["kick","Consistent kick-up to wall (8 of 10)",24],["pullup8","8 strict pull-ups",24],["tlsit20","20 s tuck L-sit",24],
-["hs5","5 s freestanding handstand",30],["tfl15","15 s tuck front lever",34],["hs15","15 s freestanding handstand",38],["pbox","Box pistol to a low box (each leg)",38],
-["hspu1","First wall handstand push-up",44],["mu1","First bar muscle-up",48],["lsit15","15 s full L-sit",48],["pistol","Full pistol squat each leg",50],["tpl5","5 s tuck planche",52],["hs30","30 s+ freestanding handstand",52]];
+["sq1","Back squat your bodyweight × 5",28],["hs5","5 s freestanding handstand",30],["dl15","Deadlift 1.5× bodyweight",32],["tfl15","15 s tuck front lever",34],["ohp","Overhead press 0.6× bodyweight × 5",36],["hs15","15 s freestanding handstand",38],["pbox","Box pistol to a low box (each leg)",38],
+["bp1","Bench press your bodyweight",42],["hspu1","First wall handstand push-up",44],["mu1","First bar muscle-up",48],["lsit15","15 s full L-sit",48],["dl2","Deadlift 2× bodyweight",50],["pistol","Full pistol squat each leg",50],["tpl5","5 s tuck planche",52],["hs30","30 s+ freestanding handstand",52]];
 
 /* ===================== STATE ===================== */
 const LS='calisthenics-year-v1';
@@ -243,7 +264,7 @@ const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','De
 const nice=d=>`${DOW[d.getDay()]}, ${MON[d.getMonth()]} ${d.getDate()}`;
 const short=d=>`${MON[d.getMonth()]} ${d.getDate()}`;
 function defStart(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+((8-d.getDay())%7));return fmt(d)}
-function load(){try{const r=JSON.parse(localStorage.getItem(LS));if(r&&r.start)return Object.assign({time:'18:00',log:{},ms:{},tests:[]},r)}catch(e){}return{start:defStart(),days:[1,3,5],time:'18:00',log:{},ms:{},tests:[],ok:false}}
+function load(){try{const r=JSON.parse(localStorage.getItem(LS));if(r&&r.start)return Object.assign({time:'18:00',unit:'lb',log:{},ms:{},tests:[]},r)}catch(e){}return{start:defStart(),days:[1,3,5],time:'18:00',unit:'lb',log:{},ms:{},tests:[],ok:false}}
 function save(){try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){}}
 let st=load(),SCHED=[],BY={},tab='today',viewKey=null,openEx={};
 const todayKey=()=>fmt(new Date());
@@ -259,6 +280,7 @@ function rx(sess){
   return ph.days[sess.tpl].ex.map(p=>({...p,sets:dl?Math.max(1,p.s-1):p.s,val:Math.round(p.lo+(p.hi-p.lo)*t)}));
 }
 function rxText(r){
+  if(r.u==='w')return `${r.sets} × ${r.lo}–${r.hi} reps${r.side?' / side':''}`;
   const u={r:' reps',s:' s',a:' attempts',t:' taps'}[r.u];
   const v=r.e==='free_hs'?`${r.val} s best hold`:r.val+u;
   return `${r.sets} × ${v}${r.side?' / side':''}`;
@@ -278,7 +300,7 @@ function render(){
 
 function rToday(){
   const tk=todayKey();let h='';
-  if(!st.ok){h+=`<div class="card hero"><h2>Welcome 👋</h2><p class="mut small">A 52-week plan that takes you from beginner basics to handstands, muscle-ups, L-sits and pistols. Choose your start date and 3–5 training days. You can change them any time in Settings.</p>${setupForm()}<div style="margin-top:14px"><button class="btn full" data-act="begin">Start my program</button></div></div>`;app.innerHTML=h;return}
+  if(!st.ok){h+=`<div class="card hero"><h2>Welcome 👋</h2><p class="mut small">A 52-week hybrid of weightlifting and calisthenics: build real strength on the squat, bench, deadlift and press while working up to handstands, muscle-ups, L-sits and pistols. Choose your start date and 3–5 training days. You can change them any time in Settings.</p>${setupForm()}<div style="margin-top:14px"><button class="btn full" data-act="begin">Start my program</button></div></div>`;app.innerHTML=h;return}
   let key=viewKey||tk,s=BY[key];
   if(!viewKey&&!s){
     const next=SCHED.find(x=>x.key>=tk);
@@ -298,13 +320,13 @@ function sessionHTML(s){
   let h=`<div class="datenav"><button data-act="go" data-k="${prev?prev.key:''}" ${prev?'':'disabled'}>‹</button><div class="d">${s.key===tk?'Today · ':''}${nice(s.date)}</div><button data-act="go" data-k="${next?next.key:''}" ${next?'':'disabled'}>›</button></div>`;
   if(s.key!==tk&&viewKey)h+=`<div style="margin:-4px 0 10px;text-align:center"><button class="btn sec" style="padding:6px 12px;font-size:13px" data-act="home">← Back to today</button></div>`;
   h+=`<div class="card hero" style="border-left-color:${ph.col}"><div class="row"><span class="tag" style="color:${ph.col};border-color:${ph.col}">Phase ${PH.indexOf(ph)+1} · ${ph.n}</span><span class="tag">Week ${s.week}</span>${isDeload(s.week)?'<span class="tag deload">Deload</span>':''}${isTest(s.week)?'<span class="tag test">Test week</span>':''}${lg.c?'<span class="tag done">Done ✓</span>':''}</div><div class="big">${d.t}</div><div class="small mut">${list.length} exercises · ~${estMin(list)} min · tap a set when you finish it and the rest timer starts</div>`;
-  if(isDeload(s.week))h+=`<p class="small tip" style="margin-top:10px">Deload week: one fewer set per exercise. Move smoothly, focus on perfect form, and let your joints recover.</p>`;
-  if(isTest(s.week))h+=`<p class="small tip" style="margin-top:10px">Test week: on your last session (or a rest day), record your max push-ups, pull-ups, dips, handstand and L-sit holds in <b>Progress → Tests</b>.</p>`;
+  if(isDeload(s.week))h+=`<p class="small tip" style="margin-top:10px">Deload week: one fewer set per exercise and about 80% of your usual weights. Move smoothly, focus on perfect form, and let your joints recover.</p>`;
+  if(isTest(s.week))h+=`<p class="small tip" style="margin-top:10px">Test week: on your last session (or a rest day), record your max push-ups, pull-ups, dips, handstand and L-sit holds, plus your best squat, bench and deadlift sets, in <b>Progress → Tests</b>.</p>`;
   h+=`</div>`;
-  h+=`<details class="card"><summary>🔥 Warm-up (≈7 min)</summary><ul class="list" style="margin-top:8px">${WARM.map(w=>`<li><span class="sp">${w[0]}${w[2]?` <a class="small" style="color:var(--acc)" target="_blank" rel="noopener" href="${yt(EX[w[2]].q)}">▶</a>`:''}</span><span class="mut small">${w[1]}</span></li>`).join('')}</ul></details>`;
+  h+=`<details class="card"><summary>🔥 Warm-up (≈10 min)</summary><ul class="list" style="margin-top:8px">${WARM.map(w=>`<li><span class="sp">${w[0]}${w[2]?` <a class="small" style="color:var(--acc)" target="_blank" rel="noopener" href="${yt(EX[w[2]].q)}">▶</a>`:''}</span><span class="mut small">${w[1]}</span></li>`).join('')}</ul></details>`;
   list.forEach((r,i)=>{
     const e=EX[r.e],done=lg.s[i]||0,all=done>=r.sets,ok=openEx[s.key+i];
-    h+=`<div class="ex ${all?'alldone':''}"><div class="top"><div class="num">${all?'✓':i+1}</div><div class="sp"><div class="nm">${e.n}</div><div class="rx">${rxText(r)}</div><div class="rest">Rest ${fmtRest(r.rest)} between sets</div></div></div>
+    h+=`<div class="ex ${all?'alldone':''}"><div class="top"><div class="num">${all?'✓':i+1}</div><div class="sp"><div class="nm">${e.n}</div><div class="rx">${rxText(r)}</div><div class="rest">Rest ${fmtRest(r.rest)} between sets</div></div></div>${r.u==='w'?weightUI(s,i,r,lg):''}
     <div class="sets">${Array.from({length:r.sets},(_,j)=>`<button class="set ${j<done?'on':''}" data-act="set" data-k="${s.key}" data-i="${i}" data-j="${j}">${j<done?'✓':'Set '+(j+1)}</button>`).join('')}</div>
     <button class="more" data-act="exi" data-v="${s.key+i}">${ok?'▴ Hide':'▾ How to do it · video · easier/harder'}</button>${ok?`<div class="det">${exDetail(r.e)}</div>`:''}</div>`;
   });
@@ -313,14 +335,27 @@ function sessionHTML(s){
   h+=`<p class="small mut" style="margin:6px 4px 14px">Too easy? Hit the top of the target with perfect form → use the "Harder" variation. Too hard? Use "Easier" and work up to it.</p>`;
   return h;
 }
-function estMin(list){let t=420+240;list.forEach(r=>{t+=r.sets*(r.u==='s'?r.val+10:r.val*3+5)*(r.side?2:1)+(r.sets-1)*r.rest+30});return Math.round(t/60/5)*5}
+function estMin(list){let t=420+240;list.forEach(r=>{t+=r.sets*(r.u==='s'?r.val+10:r.u==='w'?r.hi*4+10:r.val*3+5)*(r.side?2:1)+(r.sets-1)*r.rest+30});return Math.round(t/60/5)*5}
+function lastLift(s,id){
+  for(let j=s.idx-1;j>=0;j--){const ps=SCHED[j],lg=st.log[ps.key];if(!lg||!lg.w)continue;const i=rx(ps).findIndex(r=>r.e===id);if(i>=0&&lg.w[i]){return{w:lg.w[i],up:!!(lg.up&&lg.up[i]),date:ps.date}}}
+  return null;
+}
+function weightUI(s,i,r,lg){
+  const e=EX[r.e],last=lastLift(s,r.e),u=st.unit||'lb',inc=e.lower?(u==='kg'?5:10):(u==='kg'?2.5:5),dl=isDeload(s.week);
+  let sug='';
+  if(last){const base=+last.w,tgt=dl?Math.round(base*0.8/inc)*inc||base:(last.up?base+inc:base);sug=`Last: <b>${base} ${u}</b> (${short(last.date)}) → today try <b style="color:var(--acc)">${tgt} ${u}</b>${dl?' (deload ~80%)':last.up?' (+'+inc+')':''}`}
+  else sug='First time: pick a weight you could lift for 2–3 more reps than the top of the range.';
+  return `<div class="wt"><div class="row"><input type="number" inputmode="decimal" step="any" placeholder="Weight" value="${lg.w&&lg.w[i]!=null?lg.w[i]:''}" data-in="wt" data-k="${s.key}" data-i="${i}"><span class="mut">${u}${r.side?' (per hand)':''}</span></div>
+  <div class="small mut" style="margin-top:6px">${sug}</div>
+  <label class="small upl"><input type="checkbox" data-in="up" data-k="${s.key}" data-i="${i}" ${lg.up&&lg.up[i]?'checked':''}> Got ${r.hi} reps on every set → go heavier next time</label></div>`;
+}
 const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function exDetail(id){const e=EX[id];return `<ol>${e.how.map(x=>`<li>${x}</li>`).join('')}</ol>${e.tip?`<p class="tip">💡 ${e.tip}</p>`:''}${e.easy?`<p><b>Easier:</b> ${e.easy}</p>`:''}${e.hard?`<p><b>Harder:</b> ${e.hard}</p>`:''}<a class="vid" target="_blank" rel="noopener" href="${yt(e.q)}">▶ Watch video tutorials</a>`}
 
 function rPlan(){
   const tk=todayKey(),cw=Math.floor((parse(tk)-parse(st.start))/864e5/7)+1;
-  let h=`<div class="card"><h2>Your 52-week roadmap</h2><p class="small mut">${st.days.length} days/week · starts ${nice(parse(st.start))}. Every 4th week is a lighter <b>deload</b>. Weeks 12, 24, 38 and 52 are <b>test weeks</b>. Reps and hold times increase automatically each week.</p><p class="small" style="margin-top:8px"><b>Equipment:</b> pull-up bar, a wall, something for dips (parallel bars, two sturdy chairs or a counter corner), a mat. Parallettes are optional but useful from Phase 3.</p><p class="small mut" style="margin-top:8px">Tap any session to open it. Green = done, red outline = missed.</p></div>`;
+  let h=`<div class="card"><h2>Your 52-week roadmap</h2><p class="small mut">${st.days.length} days/week · starts ${nice(parse(st.start))}. Every 4th week is a lighter <b>deload</b>. Weeks 12, 24, 38 and 52 are <b>test weeks</b>. Calisthenics reps and holds go up automatically each week. Lifts use <b>double progression</b>: stay at a weight until you hit the top of the rep range on every set, then go heavier.</p><p class="small" style="margin-top:8px"><b>Session order:</b> handstand/skill work first while you're fresh → main lifts → calisthenics → core.</p><p class="small" style="margin-top:8px"><b>Equipment:</b> a gym with barbell, rack, bench, dumbbells, pull-up bar and dip bars. Home with dumbbells only? Use the "Easier" swap listed on each lift (for example goblet squat for back squat, DB bench for barbell bench).</p><p class="small mut" style="margin-top:8px">Tap any session to open it. Green = done, red outline = missed.</p></div>`;
   PH.forEach((p,pi)=>{
     h+=`<div class="card phase" style="--pc:${p.col}"><h2 style="color:${p.col}">Phase ${pi+1}: ${p.n}</h2><div class="small mut">Weeks ${p.s}–${p.e}</div><p class="small" style="margin:6px 0 4px">${p.goal}</p><details style="margin:8px 0"><summary class="small">Session templates</summary><div class="small" style="margin-top:6px">${(ORDER[st.days.length]||ORDER[3]).map(k=>`<p style="margin:6px 0"><b>${p.days[k].t}:</b> <span class="mut">${p.days[k].ex.map(x=>EX[x.e].n).join(' · ')}</span></p>`).join('')}</div></details>`;
     for(let w=p.s;w<=p.e;w++){
@@ -336,7 +371,7 @@ function rPlan(){
 let libQ='';
 function rLib(){
   let h=`<input class="search" placeholder="Search exercises…" value="${esc(libQ)}" data-act="libq" id="libq">`;
-  const cats=['Handstand','Push','Pull','Core','Legs','Mobility','Conditioning'];
+  const cats=['Handstand','Weights','Push','Pull','Core','Legs','Mobility','Conditioning'];
   cats.forEach(c=>{
     const ids=Object.keys(EX).filter(k=>EX[k].c===c&&EX[k].n.toLowerCase().includes(libQ.toLowerCase()));
     if(!ids.length)return;
@@ -356,9 +391,9 @@ function rProg(){
   h+=`<div class="card"><h3>Year progress</h3><div class="bar"><i style="width:${Math.round(done/SCHED.length*100)}%"></i></div><div class="small mut">${Math.round(done/SCHED.length*100)}% of all sessions complete</div></div>`;
   h+=`<div class="card"><h3>Skill milestones</h3><p class="small mut">Tick them off as you hit them. The week shown is a typical target. Everyone progresses differently, so don't stress if you're behind.</p>${MS.map(m=>`<div class="ms"><div class="chk ${st.ms[m[0]]?'on':''}" data-act="ms" data-v="${m[0]}">${st.ms[m[0]]?'✓':''}</div><div class="n">${m[1]}${st.ms[m[0]]?`<div class="w" style="color:var(--ok)">Unlocked ${short(parse(st.ms[m[0]]))}</div>`:''}</div><div class="w">~wk ${m[2]}</div></div>`).join('')}</div>`;
   h+=`<div class="card"><h3>Tests (max effort)</h3><p class="small mut">Do these in test weeks (12, 24, 38, 52) and at the very start to see how far you've come.</p>
-  <div class="grid2"><div><label class="f">Date</label><input type="date" id="t_d" value="${tk}"></div><div><label class="f">Push-ups (reps)</label><input type="number" inputmode="numeric" id="t_pu"></div><div><label class="f">Pull-ups (reps)</label><input type="number" inputmode="numeric" id="t_pl"></div><div><label class="f">Dips (reps)</label><input type="number" inputmode="numeric" id="t_dp"></div><div><label class="f">Handstand hold (s)</label><input type="number" inputmode="numeric" id="t_hs"></div><div><label class="f">L-sit / tuck L-sit (s)</label><input type="number" inputmode="numeric" id="t_ls"></div></div>
+  <div class="grid2"><div><label class="f">Date</label><input type="date" id="t_d" value="${tk}"></div><div><label class="f">Push-ups (reps)</label><input type="number" inputmode="numeric" id="t_pu"></div><div><label class="f">Pull-ups (reps)</label><input type="number" inputmode="numeric" id="t_pl"></div><div><label class="f">Dips (reps)</label><input type="number" inputmode="numeric" id="t_dp"></div><div><label class="f">Handstand hold (s)</label><input type="number" inputmode="numeric" id="t_hs"></div><div><label class="f">L-sit / tuck L-sit (s)</label><input type="number" inputmode="numeric" id="t_ls"></div><div><label class="f">Squat best set (${st.unit||'lb'} × reps)</label><input id="t_sq" placeholder="e.g. 185x5"></div><div><label class="f">Bench best set</label><input id="t_bp" placeholder="e.g. 135x5"></div><div><label class="f">Deadlift best set</label><input id="t_dl" placeholder="e.g. 225x5"></div></div>
   <button class="btn" style="margin-top:12px" data-act="addtest">Save test</button>
-  ${st.tests.length?`<table style="margin-top:14px"><tr><th>Date</th><th>Push</th><th>Pull</th><th>Dip</th><th>HS</th><th>L-sit</th><th></th></tr>${st.tests.map((t,i)=>`<tr><td>${short(parse(t.d))}</td><td>${t.pu??'–'}</td><td>${t.pl??'–'}</td><td>${t.dp??'–'}</td><td>${t.hs!=null?t.hs+'s':'–'}</td><td>${t.ls!=null?t.ls+'s':'–'}</td><td><button class="chip" style="min-width:0" data-act="deltest" data-v="${i}">✕</button></td></tr>`).join('')}</table>`:''}</div>`;
+  ${st.tests.length?`<div class="tblw"><table style="margin-top:14px;min-width:520px"><tr><th>Date</th><th>Push</th><th>Pull</th><th>Dip</th><th>HS</th><th>L-sit</th><th>Squat</th><th>Bench</th><th>DL</th><th></th></tr>${st.tests.map((t,i)=>`<tr><td>${short(parse(t.d))}</td><td>${t.pu??'–'}</td><td>${t.pl??'–'}</td><td>${t.dp??'–'}</td><td>${t.hs!=null?t.hs+'s':'–'}</td><td>${t.ls!=null?t.ls+'s':'–'}</td><td>${esc(t.sq||'–')}</td><td>${esc(t.bp||'–')}</td><td>${esc(t.dl||'–')}</td><td><button class="chip" style="min-width:0" data-act="deltest" data-v="${i}">✕</button></td></tr>`).join('')}</table></div>`:''}</div>`;
   app.innerHTML=h;
 }
 
@@ -369,7 +404,7 @@ function setupForm(){
 }
 function dayHint(){const n=st.days.length;return n<3?'Pick at least 3 days.':n>5?'Pick at most 5 days.':n===3?'3 days: Push · Pull · Full body/skills. Great for beginners.':n===4?'4 days: adds a dedicated Handstand & Mobility day.':'5 days: adds Handstand & Mobility plus a Legs & Conditioning day.'}
 function rSet(){
-  app.innerHTML=`<div class="card"><h2>Schedule</h2>${setupForm()}<label class="f">Usual workout time (for calendar events)</label><input type="time" id="s_time" value="${st.time}"><div class="row" style="margin-top:14px"><button class="btn" data-act="saveset">Save schedule</button></div><p class="small mut" style="margin-top:8px">Changing days or the start date re-maps the plan. Logs stay attached to their dates.</p></div>
+  app.innerHTML=`<div class="card"><h2>Schedule</h2>${setupForm()}<label class="f">Usual workout time (for calendar events)</label><input type="time" id="s_time" value="${st.time}"><label class="f">Weight units</label><select id="s_unit"><option value="lb" ${st.unit!=='kg'?'selected':''}>Pounds (lb)</option><option value="kg" ${st.unit==='kg'?'selected':''}>Kilograms (kg)</option></select><div class="row" style="margin-top:14px"><button class="btn" data-act="saveset">Save schedule</button></div><p class="small mut" style="margin-top:8px">Changing days or the start date re-maps the plan. Logs stay attached to their dates.</p></div>
   <div class="card"><h2>Add to your calendar</h2><p class="small mut">Downloads a .ics file with every workout for the year (with a 30-minute reminder). Open it on your phone, or import it into Google Calendar (Settings → Import) or Apple Calendar.</p><button class="btn sec" style="margin-top:10px" data-act="ics">📅 Download calendar (.ics)</button></div>
   <div class="card"><h2>Backup</h2><p class="small mut">Progress is saved in this browser. Export a backup to move it to another device.</p><div class="row" style="margin-top:10px"><button class="btn sec" data-act="export">⬇ Export</button><label class="btn sec" style="cursor:pointer">⬆ Import<input type="file" accept=".json" id="imp" style="display:none"></label></div></div>
   <div class="card"><h2>Reset</h2><button class="btn bad" data-act="reset">Erase all progress</button></div>
@@ -394,7 +429,7 @@ function ics(){
   SCHED.forEach(s=>{
     const ph=phaseOf(s.week),d=ph.days[s.tpl],dt=s.key.replace(/-/g,'')+`T${hh}${mm}00`;
     const desc=`Week ${s.week} · Phase ${PH.indexOf(ph)+1}: ${ph.n}${isDeload(s.week)?' (Deload)':''}${isTest(s.week)?' (Test week)':''}\n\n`+rx(s).map(r=>`• ${EX[r.e].n}: ${rxText(r)} (rest ${fmtRest(r.rest)})`).join('\n')+`\n\nWarm up first! Open your tracker to log sets.`;
-    out.push('BEGIN:VEVENT',`UID:cali-${s.key}-${s.tpl}@yearofcalisthenics`,`DTSTAMP:${stamp}`,`DTSTART:${dt}`,'DURATION:PT60M',fold('SUMMARY:'+esc2(`💪 Calisthenics: ${d.t} (Wk ${s.week})`)),fold('DESCRIPTION:'+esc2(desc)),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Workout in 30 min','TRIGGER:-PT30M','END:VALARM','END:VEVENT');
+    out.push('BEGIN:VEVENT',`UID:cali-${s.key}-${s.tpl}@yearofcalisthenics`,`DTSTAMP:${stamp}`,`DTSTART:${dt}`,'DURATION:PT60M',fold('SUMMARY:'+esc2(`💪 Hybrid: ${d.t} (Wk ${s.week})`)),fold('DESCRIPTION:'+esc2(desc)),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Workout in 30 min','TRIGGER:-PT30M','END:VALARM','END:VEVENT');
   });
   out.push('END:VCALENDAR');
   dl(new Blob([out.join('\r\n')],{type:'text/calendar'}),'calisthenics-year.ics');
@@ -402,7 +437,7 @@ function ics(){
 function dl(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 
 /* ===================== EVENTS ===================== */
-function readSetup(){const s=document.getElementById('s_start');if(s&&s.value)st.start=s.value;const t=document.getElementById('s_time');if(t&&t.value)st.time=t.value}
+function readSetup(){const s=document.getElementById('s_start');if(s&&s.value)st.start=s.value;const t=document.getElementById('s_time');if(t&&t.value)st.time=t.value;const u=document.getElementById('s_unit');if(u)st.unit=u.value}
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-act]');if(!t)return;const a=t.dataset.act,v=t.dataset.v;
   if(a==='tab'){tab=v;if(v==='today')viewKey=null;render();scrollTo(0,0)}
@@ -421,7 +456,7 @@ document.addEventListener('click',e=>{
   else if(a==='day'){const d=+v;st.days=st.days.includes(d)?st.days.filter(x=>x!==d):[...st.days,d];document.querySelectorAll('.day').forEach(b=>b.classList.toggle('on',st.days.includes(+b.dataset.v)));document.getElementById('dayhint').textContent=dayHint()}
   else if(a==='begin'||a==='saveset'){readSetup();if(st.days.length<3||st.days.length>5){toast('Pick 3–5 days');return}st.ok=true;save();build();toast(a==='begin'?"Let's go! 💪":'Schedule saved');if(a==='begin'){tab='today'}render()}
   else if(a==='ms'){st.ms[v]?delete st.ms[v]:st.ms[v]=todayKey();if(st.ms[v])toast('Skill unlocked! 🏅');save();render()}
-  else if(a==='addtest'){const g=id=>{const x=document.getElementById(id).value;return x===''?null:+x};const t2={d:document.getElementById('t_d').value||todayKey(),pu:g('t_pu'),pl:g('t_pl'),dp:g('t_dp'),hs:g('t_hs'),ls:g('t_ls')};st.tests.push(t2);st.tests.sort((x,y)=>x.d<y.d?-1:1);save();toast('Test saved');render()}
+  else if(a==='addtest'){const g=id=>{const x=document.getElementById(id).value;return x===''?null:+x};const t2={d:document.getElementById('t_d').value||todayKey(),pu:g('t_pu'),pl:g('t_pl'),dp:g('t_dp'),hs:g('t_hs'),ls:g('t_ls'),sq:document.getElementById('t_sq').value,bp:document.getElementById('t_bp').value,dl:document.getElementById('t_dl').value};st.tests.push(t2);st.tests.sort((x,y)=>x.d<y.d?-1:1);save();toast('Test saved');render()}
   else if(a==='deltest'){st.tests.splice(+v,1);save();render()}
   else if(a==='ics'){readSetup();save();ics()}
   else if(a==='export'){dl(new Blob([JSON.stringify(st,null,1)],{type:'application/json'}),'calisthenics-backup.json')}
@@ -431,10 +466,12 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('input',e=>{
   const t=e.target;if(t.dataset.act==='note'){L(t.dataset.k).n=t.value;save()}
+  else if(t.dataset.in==='wt'){const lg=L(t.dataset.k);lg.w=lg.w||{};lg.w[t.dataset.i]=t.value===''?null:+t.value;save()}
   else if(t.dataset.act==='libq'){libQ=t.value;rLib()}
 });
 document.addEventListener('change',e=>{
-  if(e.target.id==='imp'){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.start)throw 0;st=Object.assign({time:'18:00',log:{},ms:{},tests:[]},d);save();build();render();toast('Backup restored')}catch(x){toast('Invalid backup file')}};r.readAsText(f)}
+  if(e.target.dataset.in==='up'){const lg=L(e.target.dataset.k);lg.up=lg.up||{};lg.up[e.target.dataset.i]=e.target.checked;save();return}
+  if(e.target.id==='imp'){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.start)throw 0;st=Object.assign({time:'18:00',unit:'lb',log:{},ms:{},tests:[]},d);save();build();render();toast('Backup restored')}catch(x){toast('Invalid backup file')}};r.readAsText(f)}
 });
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&tEl.classList.contains('show'))tick()});
 
